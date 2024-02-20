@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserStoreRequest;
 use App\Http\Services\GenericService;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -10,8 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
-    //
-
 
     public function index(Request $request)
     {
@@ -20,4 +19,41 @@ class UserController extends Controller
         return view("user.index", compact("users"));
     }
 
+
+    public function create()
+    {
+        return view("");
+    }
+
+    public function store(UserStoreRequest $request)
+    {
+             User::create($request->all());
+            return redirect()->route("");
+    }
+
+    public function edit()
+    {
+        return redirect()->route("");
+    }
+
+
+    public function update(UserStoreRequest $request, User $user)
+    {
+        $user->update($request->all());
+        return redirect()->route("");
+    }
+
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route("");
+    }
+
+
+
+
+
 }
+
+
