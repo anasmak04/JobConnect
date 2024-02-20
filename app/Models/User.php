@@ -12,7 +12,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable,InteractsWithMedia;
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia;
 
 
 
@@ -28,6 +28,23 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->belongsToMany(Role::class);
     }
+
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class);
+    }
+
+    public function formations()
+{
+    return $this->belongsToMany(Formation::class);
+}
+
+
+    public function jobOffers()
+    {
+        return $this->belongsToMany(JobOffer::class, 'job_offer_user', 'user_id', 'job_offer_id')->withTimestamps();
+    }
+
 
 
     protected $fillable = [
