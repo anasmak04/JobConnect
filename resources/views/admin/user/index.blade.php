@@ -422,7 +422,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Pending Requests Card Example -->
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-warning shadow h-100 py-2">
@@ -453,12 +452,28 @@
                                 <tr>
                                     <th>avatar</th>
                                     <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Budget</th>
-                                    <th>Owner</th>
+                                    <th>Email</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
+                                @foreach($users as $user)
+                                <tr>
+                                        <td>{{$user->id}}</td>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->email}}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <form action="{{ route('user.destroy', ['user' => $user]) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-danger" type="submit">Delete</button>
+                                            </form>
+                                            <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#editUserModal-{{ $user->id }}">Update</a>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                @endforeach
 
                             </table>
                         </div>
@@ -500,44 +515,39 @@
 
 </html>
 
+                        @foreach($users as $user)
+                            <div class="modal fade" id="editUserModal-{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="editUserModal" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editProjectModalLabel">Edit User id - {{$user->id}}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="{{ route('user.update', ['user' => $user->id]) }}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="projectName">Name : </label>
+                                                    <input type="text" class="form-control" id="projectName" name="name" value="{{ $user->name }}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="projectDescription">Email : </label>
+                                                    <input type="email" class="form-control" id="projectDescription" name="email" value="{{ $user->email }}"  required  >
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
 
-{{--                        @foreach($projects as $project)--}}
-{{--                            <div class="modal fade" id="editProjectModal-{{$project->id}}" tabindex="-1" role="dialog" aria-labelledby="editProjectModalLabel" aria-hidden="true">--}}
-{{--                                <div class="modal-dialog" role="document">--}}
-{{--                                    <div class="modal-content">--}}
-{{--                                        <div class="modal-header">--}}
-{{--                                            <h5 class="modal-title" id="editProjectModalLabel">Edit Project</h5>--}}
-{{--                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                                                <span aria-hidden="true">&times;</span>--}}
-{{--                                            </button>--}}
-{{--                                        </div>--}}
-{{--                                        <form action="{{ route('project.update', ['project' => $project->id]) }}" method="post">--}}
-{{--                                            @csrf--}}
-{{--                                            @method('PUT')--}}
-{{--                                            <div class="modal-body">--}}
-{{--                                                <!-- Form fields for editing a project -->--}}
-{{--                                                <div class="form-group">--}}
-{{--                                                    <label for="projectName">Project Name</label>--}}
-{{--                                                    <input type="text" class="form-control" id="projectName" name="name" value="{{ $project->name }}" required>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="form-group">--}}
-{{--                                                    <label for="projectDescription">Description</label>--}}
-{{--                                                    <textarea class="form-control" id="projectDescription" name="description" rows="3" required>{{ $project->description }}</textarea>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="form-group">--}}
-{{--                                                    <label for="projectBudget">Budget</label>--}}
-{{--                                                    <input type="number" class="form-control" id="projectBudget" name="budget" value="{{ $project->budget }}" required>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="modal-footer">--}}
-{{--                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>--}}
-{{--                                                <button type="submit" class="btn btn-primary">Save Changes</button>--}}
-{{--                                            </div>--}}
-{{--                                        </form>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        @endforeach--}}
 
 {{--                        @foreach($projects as $project)--}}
 {{--                            <div class="modal fade" id="showProjectModal-{{$project->id}}" tabindex="-1" aria-labelledby="showProjectModalLabel" aria-hidden="true">--}}

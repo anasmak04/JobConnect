@@ -14,9 +14,9 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+//        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $users = User::all();
-        return view("user.index", compact("users"));
+        return view("admin.user.index", compact("users"));
     }
 
 
@@ -47,7 +47,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route("");
+        return redirect()->route("user.index");
     }
 
 
