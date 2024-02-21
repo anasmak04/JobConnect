@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
@@ -9,9 +10,11 @@ class CityController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        //
+        $cities = City::all();
+        return view("", compact("cities"));
     }
 
     /**
@@ -19,7 +22,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        return view("");
     }
 
     /**
@@ -28,37 +31,37 @@ class CityController extends Controller
     public function store(Request $request)
     {
         //
+        City::create($request->all());
+        return redirect()->route("");
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        //
+        return view("");
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request , City $city)
     {
         //
+        $city->update($request->all());
+        return redirect()->route("");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(City $city)
     {
-        //
+        $city->delete();
+        return redirect()->route("");
     }
+
+
 }

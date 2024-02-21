@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $companies = Company::all();
+        return view("", compact("companies"));
     }
 
     /**
@@ -19,7 +20,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view("");
     }
 
     /**
@@ -28,37 +29,36 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         //
+        Company::create($request->all());
+        return redirect()->route("");
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        //
+        return view("");
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request , Company $company)
     {
         //
+        $company->update($request->all());
+        return redirect()->route("");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Company $company)
     {
-        //
+        $company->delete();
+        return redirect()->route("");
     }
+
 }
