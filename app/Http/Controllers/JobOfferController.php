@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobOffer;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 
 class JobOfferController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $joboffers = JobOffer::all();
+        return view("", compact("joboffers"));
     }
 
     /**
@@ -19,7 +20,7 @@ class JobOfferController extends Controller
      */
     public function create()
     {
-        //
+        return view("");
     }
 
     /**
@@ -28,37 +29,37 @@ class JobOfferController extends Controller
     public function store(Request $request)
     {
         //
+        JobOffer::create($request->all());
+        return redirect()->route("");
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        //
+        return view("");
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request , JobOffer $jobOffer)
     {
         //
+        $jobOffer->update($request->all());
+        return redirect()->route("");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(JobOffer $jobOffer)
     {
-        //
+        $jobOffer->delete();
+        return redirect()->route("");
     }
+
+
 }
