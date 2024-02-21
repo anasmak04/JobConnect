@@ -16,7 +16,8 @@ class UserController extends Controller
     {
 //        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $users = User::all();
-        return view("admin.user.index", compact("users"));
+        $usercount = User::count();
+        return view("admin.user.index", compact("users", "usercount"));
     }
 
 
@@ -40,7 +41,7 @@ class UserController extends Controller
     public function update(UserStoreRequest $request, User $user)
     {
         $user->update($request->all());
-        return redirect()->route("");
+        return redirect()->route("user.index");
     }
 
 

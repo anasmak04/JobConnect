@@ -453,30 +453,31 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>avatar</th>
+                                    <th>Id</th>
                                     <th>Name</th>
-                                    <th>Email</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
-                                @foreach($users as $user)
-                                <tr>
-                                        <td>{{$user->id}}</td>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <form action="{{ route('user.destroy', ['user' => $user]) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="btn btn-danger" type="submit">Delete</button>
-                                            </form>
-                                            <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#editUserModal-{{ $user->id }}">Update</a>
-                                        </div>
-                                    </td>
+                                @foreach($skills as $skill)
+                                    <tr>
 
-                                </tr>
+                                        <td>{{$skill->id}}</td>
+                                        <td>{{$skill->name}}</td>
+
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <form action="{{ route('skill.destroy', ['skill' => $skill]) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                                </form>
+                                                <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#editUserModal-{{ $skill->id }}">Update</a>
+                                            </div>
+                                        </td>
+
+                                    </tr>
                                 @endforeach
+{{--                                {{ $skill->links() }}--}}
 
                             </table>
                         </div>
@@ -518,98 +519,37 @@
 
 </html>
 
-                        @foreach($users as $user)
-                            <div class="modal fade" id="editUserModal-{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="editUserModal" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="editProjectModalLabel">Edit User id - {{$user->id}}</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <form action="{{ route('user.update', ['user' => $user->id]) }}" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="projectName">Name : </label>
-                                                    <input type="text" class="form-control" id="projectName" name="name" value="{{ $user->name }}" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="projectDescription">Email : </label>
-                                                    <input type="email" class="form-control" id="projectDescription" name="email" value="{{ $user->email }}"  required  >
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                <button type="submit" class="btn btn-primary">Save Changes</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+@foreach($skills as $skill)
+    <div class="modal fade" id="editUserModal-{{$skill->id}}" tabindex="-1" role="dialog" aria-labelledby="editUserModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProjectModalLabel">Edit User id - {{$skill->id}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('skill.update', ['skill' => $skill->id]) }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="projectName">id : </label>
+                            <input type="number" class="form-control" id="projectName" name="id" value="{{$skill->id }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectDescription">name : </label>
+                            <input type="name" class="form-control" id="projectDescription" name="name" value="{{ $skill->name }}"  required  >
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endforeach
 
 
-{{--                        @foreach($projects as $project)--}}
-{{--                            <div class="modal fade" id="showProjectModal-{{$project->id}}" tabindex="-1" aria-labelledby="showProjectModalLabel" aria-hidden="true">--}}
-{{--                                <div class="modal-dialog modal-lg"> <!-- Use modal-lg for a larger modal -->--}}
-{{--                                    <div class="modal-content">--}}
-{{--                                        <div class="modal-header">--}}
-{{--                                            <h5 class="modal-title" id="showProjectModalLabel">{{ $project->name }}</h5>--}}
-{{--                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                                                <span aria-hidden="true">&times;</span>--}}
-{{--                                            </button>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="modal-body">--}}
-{{--                                            <img src="{{$project->getFirstMediaUrl('images')}}" alt="Project Image" style="width: 100%; max-height: 400px; object-fit: cover;">--}}
-{{--                                            <div class="mt-3">--}}
-{{--                                                <p><strong>Description:</strong> {{ $project->description }}</p>--}}
-{{--                                                <p><strong>Budget:</strong> ${{ $project->budget }}</p>--}}
-{{--                                                <p><strong>Owner : </strong> @if(optional($project->user)->name)--}}
-{{--                                                        {{ $project->user->name }}--}}
-{{--                                                    @else--}}
-{{--                                                        null--}}
-{{--                                                    @endif</p>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="modal-footer">--}}
-{{--                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        @endforeach--}}
-
-{{--                        @foreach($projects as $project)--}}
-{{--                            <div class="modal fade" id="AssignProjectModal-{{$project->id}}" tabindex="-1" role="dialog" aria-labelledby="AssignProjectModal" aria-hidden="true">--}}
-{{--                                <div class="modal-dialog" role="document">--}}
-{{--                                    <div class="modal-content">--}}
-{{--                                        <div class="modal-header">--}}
-{{--                                            <h5 class="modal-title" id="AssignProjectModal">Assign Project</h5>--}}
-{{--                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                                                <span aria-hidden="true">&times;</span>--}}
-{{--                                            </button>--}}
-{{--                                        </div>--}}
-
-{{--                                        <form action="{{ route('project.assign', ['project' => $project->id]) }}" method="post">--}}
-{{--                                            @csrf--}}
-{{--                                            @method('PATCH')--}}
-{{--                                            <div class="modal-body">--}}
-{{--                                                <select name="user_id" id="user_id">--}}
-{{--                                                    <option value="">Select a user</option>--}}
-{{--                                                    @foreach($users as $user)--}}
-{{--                                                        <option value="{{ $user->id }}">{{ $user->name }}</option>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </select>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="modal-footer">--}}
-{{--                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>--}}
-{{--                                                <button type="submit" class="btn btn-primary">Save Changes</button>--}}
-{{--                                            </div>--}}
-{{--                                        </form>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        @endforeach--}}
