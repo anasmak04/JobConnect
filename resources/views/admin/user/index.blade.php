@@ -111,7 +111,7 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="http://127.0.0.1:8000/user" >
+            <a class="nav-link collapsed" href="http://127.0.0.1:8000//dashboard/admin/user" >
                 <i class="fas fa-fw fa-folder"></i>
                 <span>users</span>
             </a>
@@ -120,23 +120,23 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="http://127.0.0.1:8000/skill">
+            <a class="nav-link" href="http://127.0.0.1:8000/dashboard/admin/skill">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>skills</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-            <a class="nav-link" href="http://127.0.0.1:8000/city">
+            <a class="nav-link" href="http://127.0.0.1:8000//dashboard/admin/city">
                 <i class="fas fa-fw fa-table"></i>
-                <span>cities</span></a>
+                <span>Cities</span></a>
         </li>
 
 
         <li class="nav-item">
-            <a class="nav-link" href="http://127.0.0.1:8000/company">
+            <a class="nav-link" href="http://127.0.0.1:8000//dashboard/admin/company">
                 <i class="fas fa-fw fa-table"></i>
-                <span>company</span></a>
+                <span>Company</span></a>
         </li>
 
         <li class="nav-item">
@@ -149,6 +149,12 @@
             <a class="nav-link" href="http://127.0.0.1:8000/jobs">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Jobs</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/jobs">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Representer Request</span></a>
         </li>
 
 
@@ -490,8 +496,11 @@
                                 </tr>
                                 @endforeach
 
+
                             </table>
+
                         </div>
+{{--                        {{$user->links()}}--}}
 
 
 

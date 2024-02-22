@@ -20,11 +20,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+//Auth::routes();
 
-Route::resource("user", UserController::class);
-Route::resource("skill", SkillController::class);
-Route::resource("city", CityController::class);
+//Route::middleware(['auth', 'check.role'])->group(function () {
+//
+//});
+
+
+Route::resource("/dashboard/admin/user", UserController::class);
+Route::resource("/dashboard/admin/skill", SkillController::class);
+Route::resource("/dashboard/admin/city", CityController::class);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
