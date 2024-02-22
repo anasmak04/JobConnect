@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
@@ -14,35 +15,23 @@ class CityController extends Controller
     public function index()
     {
         $cities = City::all();
-        return view("", compact("cities"));
+        $userscount = User::count();
+        $citiescount = City::count();
+        return view("admin.city.index", compact("cities", "userscount", "citiescount"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view("");
-    }
 
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
-        //
         City::create($request->all());
         return redirect()->route("");
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit()
-    {
-        return view("");
-    }
 
     /**
      * Update the specified resource in storage.
@@ -57,6 +46,8 @@ class CityController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
+
     public function destroy(City $city)
     {
         $city->delete();
