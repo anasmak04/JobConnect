@@ -111,32 +111,44 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="http://127.0.0.1:8000/project" >
+            <a class="nav-link collapsed" href="http://127.0.0.1:8000/user" >
                 <i class="fas fa-fw fa-folder"></i>
-                <span>Projects</span>
+                <span>users</span>
             </a>
 
         </li>
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="http://127.0.0.1:8000/partner">
+            <a class="nav-link" href="http://127.0.0.1:8000/skill">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>partners</span></a>
+                <span>skills</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-            <a class="nav-link" href="http://127.0.0.1:8000/user">
+            <a class="nav-link" href="http://127.0.0.1:8000/city">
                 <i class="fas fa-fw fa-table"></i>
-                <span>users</span></a>
+                <span>cities</span></a>
         </li>
 
 
         <li class="nav-item">
-            <a class="nav-link" href="http://127.0.0.1:8000/applications">
+            <a class="nav-link" href="http://127.0.0.1:8000/company">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Requests</span></a>
+                <span>company</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/formation">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Formation</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/jobs">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Jobs</span></a>
         </li>
 
 
