@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Formation;
 use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SkillController extends Controller
 {
     public function index()
     {
-        $skills = Skill::all();
-        return view("", compact("skills"));
+        $skills = Skill::paginate(6);
+        $usercount = User::count();
+        return view("admin.skill.index", compact("skills", "usercount"));
     }
 
     /**
@@ -29,7 +31,7 @@ class SkillController extends Controller
     {
         //
         Skill::create($request->all());
-        return redirect()->route("");
+        return redirect()->route("skill.index");
     }
 
 
@@ -48,7 +50,7 @@ class SkillController extends Controller
     {
         //
         $skill->update($request->all());
-        return redirect()->route("");
+        return redirect()->route("skill.index");
     }
 
     /**
@@ -57,7 +59,7 @@ class SkillController extends Controller
     public function destroy(Skill $skill)
     {
         $skill->delete();
-        return redirect()->route("");
+        return redirect()->route("skill.index");
     }
 
 

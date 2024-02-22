@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +23,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource("user", UserController::class);
-
+Route::resource("skill", SkillController::class);
+Route::resource("city", CityController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
