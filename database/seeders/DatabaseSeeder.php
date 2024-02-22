@@ -50,11 +50,11 @@ class DatabaseSeeder extends Seeder
 
         $companies->each(function ($company) use ($secteurs, $users) {
             // Création d'un représentant pour chaque entreprise
-            $representer = User::factory()->create();
-            CompanyRepresenter::factory()->create([
-                'company_id' => $company->id,
-                'user_id' => $representer->id
-            ]);
+            // $representer = User::factory()->create();
+            // CompanyRepresenter::factory()->create([
+            //     'company_id' => $company->id,
+            //     'user_id' => $representer->id
+            // ]);
 
             // Création d'offres d'emploi pour chaque entreprise
             JobOffer::factory(3)->create([
