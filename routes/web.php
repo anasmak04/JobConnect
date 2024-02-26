@@ -31,7 +31,7 @@ Auth::routes();
 Route::resource("/dashboard/admin/user", UserController::class);
 Route::resource("/dashboard/admin/skill", SkillController::class);
 Route::resource("/dashboard/admin/city", CityController::class);
-
+Route::resource("/representer-complete-info", \App\Http\Controllers\RepresenterController::class);
 
 
 Route::get('/candidat/candidat_profile', [CandidatController::class, 'index'])->name('candidat.profile');
