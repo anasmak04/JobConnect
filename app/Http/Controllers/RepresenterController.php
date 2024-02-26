@@ -54,7 +54,7 @@ class RepresenterController extends Controller
         $user->company_id = $company->id;
         $user->save();
 
-        return redirect()->back()->with('success', 'Company information updated successfully.');
+        return redirect()->route("user.profile.show", ['userId' => $user->id]);
     }
 
 

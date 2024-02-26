@@ -50,8 +50,9 @@ class RegisterController extends Controller
         }
 
         if (request()->hasFile('profile_image')) {
-            $user->addMediaFromRequest('profile_image')->toMediaCollection('profile_images');
+            $user->addMediaFromRequest('profile_image')->toMediaCollection('profile_images', 'public');
         }
+
 
         return $user;
     }
