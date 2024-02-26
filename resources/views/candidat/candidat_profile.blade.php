@@ -11,12 +11,13 @@
 <div class="container mt-5">
     <section style="background-color: #eee;">
         <div class="container py-5" style="width: 100%">
-
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card mb-4">
+                        @dd($profile);
+
                         <div class="card-body text-center">
-                            <img src="{{ $user->avatar_url }}" alt="avatar" class="rounded-circle img-fluid"
+                            <img src="{{ $profile->getMediaFirstUrl("image") }}" alt="avatar" class="rounded-circle img-fluid"
                                 style="width: 150px;">
                             <h5 class="my-3">{{ $user->name }}</h5>
                             <p class="text-muted mb-1">
@@ -30,7 +31,7 @@
                                 <!-- Link to show the representer form page -->
                                 <a href="{{ route('candidat.fill.representer.info') }}" class="btn btn-primary">Become Representer</a>
                             </div>
-                            
+
                         </div>
 
                     </div>
@@ -113,7 +114,7 @@
                     <div class="card mb-4 mb-md-0">
                         <div class="card-body">
                             <p class="mb-4"><span class="text-primary font-italic me-1">Assignment</span> Project Status</p>
-                    
+
                             @if ($user->artProjects && $user->artProjects->isNotEmpty())
                                 @foreach ($user->artProjects as $project)
                                     @php
@@ -136,12 +137,12 @@
                                                 break;
                                         }
                                     @endphp
-                    
+
                                     <div class="project-item">
                                         <span class="float-start clickable" style="cursor: pointer;" onclick="window.location='{{ route('art-projects.show', ['art_project' => $project->id]) }}';">
                                             {{ $project->name }}
                                         </span>
-                                        
+
                                         <span class="float-end status"
                                             style="{{ $statusStyle }}">{{ $project->status }}</span>
                                     </div>
@@ -151,7 +152,7 @@
                             @endif
                         </div>
                     </div>
-                    
+
 
                 </div>
             </div>

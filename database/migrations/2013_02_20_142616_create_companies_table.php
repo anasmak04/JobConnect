@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->string('website')->nullable();
-            $table->foreignId('city_id')->constrained()->onDelete('cascade'); // Assurez-vous que cette ligne est présente
+            $table->foreignId('city_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
 
