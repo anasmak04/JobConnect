@@ -31,6 +31,11 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsToMany(Role::class);
     }
 
+    public function company()
+    {
+        return $this->hasOne(Company::class);
+    }
+
     public function skills()
     {
         return $this->belongsToMany(Skill::class);
@@ -45,6 +50,12 @@ class User extends Authenticatable implements HasMedia
     public function jobOffers()
     {
         return $this->belongsToMany(JobOffer::class, 'job_offer_user', 'user_id', 'job_offer_id')->withTimestamps();
+    }
+
+
+    public function hasRole($roleName)
+    {
+        return $this->roles()->where('name', $roleName)->exists();
     }
 
 

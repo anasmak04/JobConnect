@@ -17,11 +17,8 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('pending_role')->nullable();
-            $table->string('company_name')->nullable();
-            $table->string('description')->nullable();
             $table->string('position')->nullable();
-            // $table->unsignedBigInteger('company_id')->nullable();
-            // $table->foreign('company_id')->references('id')->on('companies')->onDelete('set null');
+            $table->foreignId('company_id')->nullable()->constrained()->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

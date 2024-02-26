@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -53,6 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['required', 'string', 'exists:roles,name'],
         ]);
     }
 
@@ -70,10 +72,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $roleuser = Role::where("name", "User")->first();
+        $roleName = $data['role'];
+        $role = Role::where('name', $roleName)->first();
 
-        if($roleuser){
-            $user->roles()->attach($roleuser);
+        if ($role) {
+            $user->roles()->attach($role);
         }
 
         if (request()->hasFile('profile_image')) {
@@ -82,4 +85,20 @@ class RegisterController extends Controller
 
         return $user;
     }
+
+
+    protected function registered(Request $request, $user)
+    {
+        if ($user->hasRole('representer')) {
+            return redirect('/representer-complete-info');
+        } elseif ($user->hasRole('candidat')) {
+            return redirect('/dashboard');
+        } elseif ($user->hasRole('recruiter')) {
+            return redirect('/recruiter-dashboard');
+        } else {
+            return redirect('/login'); // Default redirect
+        }
+    }
+
+
 }
