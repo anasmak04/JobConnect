@@ -33,7 +33,7 @@ class User extends Authenticatable implements HasMedia
 
     public function company()
     {
-        return $this->hasOne(Company::class);
+        return $this->belongsTo(Company::class);
     }
 
     public function skills()
