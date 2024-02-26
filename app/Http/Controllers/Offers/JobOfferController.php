@@ -11,9 +11,10 @@ class JobOfferController extends Controller
 
     public function index()
     {
-        $joboffers = JobOffer::all();
-        return view("", compact("joboffers"));
+        $jobOffers = JobOffer::with('company', 'secteur')->get();
+        return view('jobOffers.index', compact('jobOffers')); // Adjusted view path
     }
+    
 
     /**
      * Show the form for creating a new resource.
