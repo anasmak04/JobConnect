@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Offers;
 
-use App\Models\City;
-use App\Models\Company;
+use App\Http\Controllers\Controller;
+use App\Models\JobOffer;
 use Illuminate\Http\Request;
 
-class CompanyController extends Controller
+class JobOfferController extends Controller
 {
 
     public function index()
     {
-        $companies = Company::all();
-        return view("", compact("companies"));
+        $joboffers = JobOffer::all();
+        return view("", compact("joboffers"));
     }
 
     /**
@@ -29,7 +29,7 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         //
-        Company::create($request->all());
+        JobOffer::create($request->all());
         return redirect()->route("");
     }
 
@@ -45,20 +45,21 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request , Company $company)
+    public function update(Request $request , JobOffer $jobOffer)
     {
         //
-        $company->update($request->all());
+        $jobOffer->update($request->all());
         return redirect()->route("");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Company $company)
+    public function destroy(JobOffer $jobOffer)
     {
-        $company->delete();
+        $jobOffer->delete();
         return redirect()->route("");
     }
+
 
 }

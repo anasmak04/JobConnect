@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\CityController;
 use App\Http\Controllers\CandidatController;
+use App\Http\Controllers\City\CityController;
 use App\Http\Controllers\Representer\ProfileRepresenter;
 use App\Http\Controllers\RepresenterController;
-use App\Http\Controllers\SkillController;
+use App\Http\Controllers\Skill\SkillController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
