@@ -9,13 +9,20 @@ use Illuminate\Http\Request;
 class CompanyController extends Controller
 {
 
+    public function showJobOffers(Company $company)
+    {
+        $jobOffers = $company->jobOffers()->with('secteur')->get();
+        return view('jobOffers.index', compact('jobOffers'));
+    }
+
+
     public function index()
     {
         $companies = Company::all();
         return view('companies.index', compact('companies'));
     }
 
-    
+
     /**
      * Show the form for creating a new resource.
      */

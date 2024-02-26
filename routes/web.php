@@ -26,7 +26,10 @@ Route::get('/candidat/fill-representer-info', [CandidatController::class, 'showR
 Route::post('/candidat/save-representer-info', [CandidatController::class, 'saveRepresenterInfo'])->name('candidat.save.representer.info');
 Route::get('/candidat/candidat_profile', [CandidatController::class, 'index'])->name('candidat.profile');
 Route::get('/job-offers', [JobOfferController::class, 'index'])->name('job_offers.index');
+Route::get('/job-offers/{job_offer}', [JobOfferController::class, 'show'])->name('job_offers.show');
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
+Route::get('/companies/{company}/job-offers', [CompanyController::class, 'showJobOffers'])->name('companies.job_offers');
+
 
 // Route::resource("user", UserController::class);
 // Route::resource("skill", SkillController::class);

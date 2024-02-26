@@ -32,10 +32,12 @@
 
     @include('components.Navbar')
 
-
     <div class="container">
+
         <h1>Companies</h1>
+
         <div class="row">
+
             @foreach ($companies as $company)
                 <div class="col-md-4 mb-4">
                     <div class="card">
@@ -45,14 +47,23 @@
                             <p class="card-text">Position: {{ $company->position }}</p>
                             <p class="card-text">Website: <a href="{{ $company->website }}"
                                     target="_blank">{{ $company->website }}</a></p>
-                            <p class="card-text">City: {{ $company->city->name }}</p>
-                            <a href="#" class="btn btn-primary">View Job Offers</a>
+                            @if ($company->city)
+                                <p class="card-text">City: {{ $company->city->name }}</p>
+                            @else
+                                <p class="card-text">City: Not specified</p>
+                            @endif
+                            <a href="{{ route('companies.job_offers', $company) }}" class="btn btn-primary">View Job
+                                Offers</a>
                         </div>
                     </div>
                 </div>
             @endforeach
+
+
         </div>
+
     </div>
+
 
     <!-- Include Bootstrap JS and its dependencies below -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
