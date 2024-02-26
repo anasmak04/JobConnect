@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Company;
 
+use App\Http\Controllers\Controller;
 use App\Models\Company;
-use App\Models\Formation;
 use Illuminate\Http\Request;
 
-class FormationController extends Controller
+class CompanyController extends Controller
 {
+
     public function index()
     {
-        $formations = Formation::all();
-        return view("", compact("formations"));
+        $companies = Company::all();
+        return view("", compact("companies"));
     }
 
     /**
@@ -28,7 +29,7 @@ class FormationController extends Controller
     public function store(Request $request)
     {
         //
-        Formation::create($request->all());
+        Company::create($request->all());
         return redirect()->route("");
     }
 
@@ -44,21 +45,20 @@ class FormationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request , Formation $formation)
+    public function update(Request $request , Company $company)
     {
         //
-        $formation->update($request->all());
+        $company->update($request->all());
         return redirect()->route("");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Formation $formation)
+    public function destroy(Company $company)
     {
-        $formation->delete();
+        $company->delete();
         return redirect()->route("");
     }
-
 
 }
