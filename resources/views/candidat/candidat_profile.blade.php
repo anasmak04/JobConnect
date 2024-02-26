@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card mb-4">
-                        @dd($profile);
+                        {{-- @dd($profile); --}}
 
                         <div class="card-body text-center">
                             <img src="{{ $profile->getMediaFirstUrl("image") }}" alt="avatar" class="rounded-circle img-fluid"

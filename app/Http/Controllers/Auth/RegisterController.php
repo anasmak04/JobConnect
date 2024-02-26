@@ -58,18 +58,17 @@ class RegisterController extends Controller
 
 
 
-
-
     protected function registered(Request $request, $user)
     {
         if ($user->hasRole('Representer')) {
             return redirect('/representer-complete-info');
-        } elseif ($user->hasRole('Candidat')) {
-            return redirect('/dashboard');
-        } elseif ($user->hasRole('Recruiter')) {
-            return redirect('/recruiter-dashboard');
+        } elseif ($user->hasRole('Candidate')) {
+            // Redirect 'Candidat' users to the login page
+            return redirect('/candidat/candidat_profile');
         } else {
             return redirect('/login');
         }
     }
+    
+    
 }
