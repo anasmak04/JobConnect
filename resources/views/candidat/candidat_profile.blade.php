@@ -3,7 +3,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Representer Information</title>
-    <!-- Include Bootstrap CSS from a CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -16,8 +15,9 @@
                     <div class="card mb-4">
 
 
+
                         <div class="card-body text-center">
-                            <img src="{{ $profile->getFirstMediaUrl('profile_images') }}" alt="avatar" class="rounded-circle img-fluid">
+                                <img src="{{$profile->getFirstMediaUrl('profile_images')}}" alt="avatar" class="rounded-circle img-fluid">
                             <h5 class="my-3">{{ $profile->name }}</h5>
                             <p class="text-muted mb-1">
                             </p>
