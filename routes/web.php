@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CandidatController;
+use App\Http\Controllers\JobOfferController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ Auth::routes();
 Route::get('/candidat/candidat_profile', [CandidatController::class, 'index'])->name('candidat.profile');
 Route::get('/candidat/fill-representer-info', [CandidatController::class, 'showRepresenterForm'])->name('candidat.fill.representer.info');
 Route::post('/candidat/save-representer-info', [CandidatController::class, 'saveRepresenterInfo'])->name('candidat.save.representer.info');
+Route::get('/job-offers', [JobOfferController::class, 'index'])->name('job_offers.index');
 Route::resource("user", UserController::class);
 Route::resource("skill", SkillController::class);
 Route::resource("city", CityController::class);

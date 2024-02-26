@@ -10,10 +10,10 @@ class JobOfferController extends Controller
 {
 
     public function index()
-    {
-        $joboffers = JobOffer::all();
-        return view("", compact("joboffers"));
-    }
+{
+    $jobOffers = JobOffer::with('company', 'secteur')->get(); // Load related company and secteur data
+    return view('jobOffer.index', compact('jobOffers')); // Note the folder name change here
+}
 
     /**
      * Show the form for creating a new resource.
