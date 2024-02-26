@@ -28,9 +28,8 @@ class CityController extends Controller
     public function store(Request $request)
     {
         City::create($request->all());
-        return redirect()->route("");
+        return redirect()->route("city.index");
     }
-
 
 
     /**
@@ -38,20 +37,18 @@ class CityController extends Controller
      */
     public function update(Request $request , City $city)
     {
-        //
         $city->update($request->all());
-        return redirect()->route("");
+        return redirect()->route("city.index");
     }
 
     /**
      * Remove the specified resource from storage.
      */
 
-
     public function destroy(City $city)
     {
         $city->delete();
-        return redirect()->route("");
+        return redirect()->route("city.index");
     }
 
 

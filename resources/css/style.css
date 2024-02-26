@@ -1,0 +1,32 @@
+.custom-table .table {
+    width: 100%;
+    margin: auto;
+}
+
+.custom-table .table th,
+.custom-table .table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.avatar {
+    border-radius: 50%; /* Makes the image circular */
+}
+
+.badge-status {
+    padding: 0.5em 1em;
+    color: #fff;
+    border-radius: 0.25em;
+}
+
+.badge-pending {
+    background-color: #ffc107; /* Bootstrap warning color */
+}
+
+.badge-accepted {
+    background-color: #28a745; /* Bootstrap success color */
+}
+
+.badge-refused {
+    background-color: #dc3545; /* Bootstrap danger color */
+}
