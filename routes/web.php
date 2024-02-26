@@ -27,11 +27,11 @@ Route::post('/candidat/save-representer-info', [CandidatController::class, 'save
 Route::get('/candidat/candidat_profile', [CandidatController::class, 'index'])->name('candidat.profile');
 Route::get('/job-offers', [JobOfferController::class, 'index'])->name('job_offers.index');
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
+Route::put('/user/{user}/update-company', [RepresenterController::class, 'updateRepresenterCompany'])->name('user.update.company');
 
 // Route::resource("user", UserController::class);
 // Route::resource("skill", SkillController::class);
 // Route::resource("city", CityController::class);
-// Route::put('/user/{user}/update-company', [RepresenterController::class, 'updateRepresenterCompany'])->name('user.update.company');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
