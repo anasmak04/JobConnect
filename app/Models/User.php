@@ -48,6 +48,11 @@ class User extends Authenticatable implements HasMedia
     }
 
 
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->exists();
+    }
+
 
     protected $fillable = [
         'name',

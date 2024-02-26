@@ -11,7 +11,7 @@ class SkillController extends Controller
 {
     public function index()
     {
-        $skills = Skill::paginate(6);
+        $skills = Skill::all();
         $usercount = User::count();
         return view("admin.skill.index", compact("skills", "usercount"));
     }
@@ -19,17 +19,14 @@ class SkillController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return view("");
-    }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+
         Skill::create($request->all());
         return redirect()->route("skill.index");
     }
