@@ -36,6 +36,9 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsTo(Company::class);
     }
 
+
+
+
     public function skills()
     {
         return $this->belongsToMany(Skill::class);
@@ -64,6 +67,7 @@ class User extends Authenticatable implements HasMedia
         'name',
         'email',
         'password',
+        'company_id'
     ];
 
     /**

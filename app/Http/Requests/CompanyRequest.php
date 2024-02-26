@@ -22,12 +22,10 @@ class CompanyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-            "id" => "required",
             "name" => "required",
             "description" => "required",
             "website" => "required",
-            "image" => "required|file",
+            'image' => 'required|image|max:10240',
             'city_id' => 'required|exists:cities,id'
         ];
     }

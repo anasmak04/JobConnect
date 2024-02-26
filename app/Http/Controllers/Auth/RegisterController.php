@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -54,6 +55,10 @@ class RegisterController extends Controller
 
         return $user;
     }
+
+
+
+
 
     protected function registered(Request $request, $user)
     {

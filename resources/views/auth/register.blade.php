@@ -80,9 +80,8 @@
 
                             <select name="role" required>
                                 <option value="">Select a Role</option>
-                                <option value="candidat">Candidat</option>
-                                <option value="representer">Representer</option>
-                                <option value="recruiter">Recruiter</option>
+                                <option value="Candidate">Candidat</option>
+                                <option value="Representer">Representer</option>
                             </select>
 
 
