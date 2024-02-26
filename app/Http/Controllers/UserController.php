@@ -25,7 +25,7 @@ class UserController extends Controller
         return view("");
     }
 
-    public function store(UserStoreRequest $request)
+    public function store(Request $request)
     {
              User::create($request->all());
             return redirect()->route("");

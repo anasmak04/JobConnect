@@ -16,12 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('website')->nullable();
-            $table->string('logo')->nullable();
             $table->foreignId('city_id')->constrained()->onDelete('cascade'); // Assurez-vous que cette ligne est présente
             $table->timestamps();
         });
-        
-        
+
+
     }
 
     /**

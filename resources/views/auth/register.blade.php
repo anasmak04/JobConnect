@@ -66,6 +66,14 @@
                                 </div>
                             </div>
 
+                            <select name="role" required>
+                                <option value="">Select a Role</option>
+                                <option value="candidat">Candidat</option>
+                                <option value="representer">Representer</option>
+                                <option value="recruiter">Recruiter</option>
+                            </select>
+
+
                             <div class="mb-0 row">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">

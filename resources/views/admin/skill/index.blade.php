@@ -17,41 +17,8 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link href="{{ asset("css/sb-admin-2.css")}}" rel="stylesheet">
+    <link href="{{ asset("css/style.css")}}" rel="stylesheet">
 </head>
-<style>
-    .custom-table .table {
-        width: 100%;
-        margin: auto;
-    }
-
-    .custom-table .table th,
-    .custom-table .table td {
-        text-align: center;
-        vertical-align: middle;
-    }
-
-    .avatar {
-        border-radius: 50%; /* Makes the image circular */
-    }
-
-    .badge-status {
-        padding: 0.5em 1em;
-        color: #fff;
-        border-radius: 0.25em;
-    }
-
-    .badge-pending {
-        background-color: #ffc107; /* Bootstrap warning color */
-    }
-
-    .badge-accepted {
-        background-color: #28a745; /* Bootstrap success color */
-    }
-
-    .badge-refused {
-        background-color: #dc3545; /* Bootstrap danger color */
-    }
-</style>
 
 <body id="page-top">
 
@@ -282,7 +249,7 @@
                                         <td>{{$skill->name}}</td>
 
                                         <td>
-                                            <div class="d-flex align-items-center">
+                                            <div class="d-flex align-items-center gap-2">
                                                 <form action="{{ route('skill.destroy', ['skill' => $skill]) }}" method="post">
                                                     @csrf
                                                     @method('delete')
@@ -294,8 +261,6 @@
 
                                     </tr>
                                 @endforeach
-{{--                                {{ $skill->links() }}--}}
-
                             </table>
                         </div>
 
