@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Formation;
 
-use App\Models\JobOffer;
-use App\Models\Skill;
+use App\Http\Controllers\Controller;
+use App\Models\Formation;
 use Illuminate\Http\Request;
 
-class JobOfferController extends Controller
+class FormationController extends Controller
 {
-
     public function index()
-{
-    $jobOffers = JobOffer::with('company', 'secteur')->get(); // Load related company and secteur data
-    return view('jobOffer.index', compact('jobOffers')); // Note the folder name change here
-}
+    {
+        $formations = Formation::all();
+        return view("", compact("formations"));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -29,7 +28,7 @@ class JobOfferController extends Controller
     public function store(Request $request)
     {
         //
-        JobOffer::create($request->all());
+        Formation::create($request->all());
         return redirect()->route("");
     }
 
@@ -45,19 +44,19 @@ class JobOfferController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request , JobOffer $jobOffer)
+    public function update(Request $request , Formation $formation)
     {
         //
-        $jobOffer->update($request->all());
+        $formation->update($request->all());
         return redirect()->route("");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(JobOffer $jobOffer)
+    public function destroy(Formation $formation)
     {
-        $jobOffer->delete();
+        $formation->delete();
         return redirect()->route("");
     }
 
