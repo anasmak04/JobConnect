@@ -64,8 +64,8 @@ class RegisterController extends Controller
         if ($user->hasRole('Representer')) {
             return redirect('/representer-complete-info');
         } elseif ($user->hasRole('Candidate')) {
-            // Redirect 'Candidat' users to the login page
-            return redirect('/candidat/candidat_profile');
+            return redirect()->route('candidat.profile');
+
         } else {
             return redirect('/login');
         }
