@@ -28,6 +28,8 @@ class CompanyRepresenterController extends Controller
     public function store(Request $request)
     {
         //
+
+
     }
 
     /**

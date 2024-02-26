@@ -14,8 +14,21 @@
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <h2 class="mb-4">Fill Representer Information</h2>
-            <form action="{{ route('representer-complete-info.store') }}" method="POST" enctype="multipart/form-data">
+
+            <form method="post" action="{{ route('user.update.company', ['user' => Auth::user()->id]) }}" enctype="multipart/form-data">
                 @csrf
+                @method("PUT")
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="mb-3">
                     <label for="company_name" class="form-label">Company Name</label>
                     <input type="text" class="form-control" name="name" id="company_name" required>
@@ -37,6 +50,11 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="image" class="form-label">Upload Image</label>
+                    <input type="file" class="form-control-file" name="image" id="image" required>
+                </div>
+
+                <div class="mb-3">
                     <label for="city" class="form-label">City</label>
                     <select class="form-control" name="city_id" id="city">
                         @foreach($cities as $city)
@@ -45,8 +63,16 @@
                     </select>
                 </div>
 
+
+
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+
+
+
+
+
+
         </div>
     </div>
 </div>
@@ -56,3 +82,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+

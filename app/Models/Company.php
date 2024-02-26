@@ -11,12 +11,8 @@ class Company extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    protected $fillable = [
-        'name',
-        'description',
-        'website',
-        "city_id"
-    ];
+    protected $fillable = ['name', 'description', 'position', 'website', 'city_id'];
+
 
     public function jobOffers()
 {
@@ -25,7 +21,7 @@ class Company extends Model implements HasMedia
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
     }
 
 

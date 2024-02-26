@@ -15,6 +15,7 @@ class RepresenterController extends Controller
     public function index()
     {
         $cities = City::all();
+
         return view("representer.representer-complete-info", compact("cities"));
     }
 
@@ -31,9 +32,30 @@ class RepresenterController extends Controller
             if ($request->hasFile('image')) {
                 $company->addMediaFromRequest('image')->toMediaCollection();
             }
-            return redirect()->route('candidat.profile ');
+            return redirect()->route('candidat.profile');
         }
 
+
+
+
+
+    public function updateRepresenterCompany(Request $request, User $user)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'website' => 'nullable|url',
+            'city_id' => 'required|exists:cities,id',
+        ]);
+
+
+        $company = Company::create($validatedData);
+
+        $user->company_id = $company->id;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Company information updated successfully.');
+    }
 
 
 }
