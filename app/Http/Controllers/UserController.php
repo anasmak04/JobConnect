@@ -37,6 +37,7 @@ class UserController extends Controller
     }
 
 
+
     public function update(UserStoreRequest $request, User $user)
     {
         $user->update($request->all());

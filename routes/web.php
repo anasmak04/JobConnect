@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CandidatController;
+use App\Http\Controllers\Representer\ProfileRepresenter;
 use App\Http\Controllers\RepresenterController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserController;
@@ -35,7 +36,7 @@ Route::resource("/dashboard/admin/city", CityController::class);
 Route::resource("/representer-complete-info", RepresenterController::class);
 
 
-Route::resource('/candidat/candidat_profile', \App\Http\Controllers\Representer\ProfileRepresenter::class);
+Route::get('/user/{userId}/profile', [ProfileRepresenter::class, 'show'])->name('user.profile.show');
 Route::get('/candidat/fill-representer-info', [CandidatController::class, 'showRepresenterForm'])->name('candidat.fill.representer.info');
 Route::post('/candidat/save-representer-info', [CandidatController::class, 'saveRepresenterInfo'])->name('candidat.save.representer.info');
 Route::put('/user/{user}/update-company', [RepresenterController::class, 'updateRepresenterCompany'])->name('user.update.company');

@@ -14,14 +14,12 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card mb-4">
-                        @dd($profile);
+
 
                         <div class="card-body text-center">
-                            <img src="{{ $profile->getMediaFirstUrl("image") }}" alt="avatar" class="rounded-circle img-fluid"
-                                style="width: 150px;">
-                            <h5 class="my-3">{{ $user->name }}</h5>
+                            <img src="{{ $profile->getFirstMediaUrl('profile_images') }}" alt="avatar" class="rounded-circle img-fluid">
+                            <h5 class="my-3">{{ $profile->name }}</h5>
                             <p class="text-muted mb-1">
-                                {{ optional($user->role)->id === 1 ? 'Admin' : (optional($user->role)->id === 2 ? 'Artist' : 'User Role') }}
                             </p>
 
                             <!-- Assuming the role or title is stored in 'role' -->
@@ -68,9 +66,10 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <p class="mb-0">Full Name</p>
+
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">{{ $user->name ?? 'N/A' }}</p>
+                                    <p class="text-muted mb-0">{{ $profile->name ?? 'N/A' }}</p>
                                 </div>
                             </div>
                             <hr>
@@ -79,7 +78,7 @@
                                     <p class="mb-0">Email</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">{{ $user->email ?? 'N/A' }}</p>
+                                    <p class="text-muted mb-0">{{ $profile->email ?? 'N/A' }}</p>
                                 </div>
                             </div>
                             <hr>
@@ -115,41 +114,6 @@
                         <div class="card-body">
                             <p class="mb-4"><span class="text-primary font-italic me-1">Assignment</span> Project Status</p>
 
-                            @if ($user->artProjects && $user->artProjects->isNotEmpty())
-                                @foreach ($user->artProjects as $project)
-                                    @php
-                                        $statusStyle = '';
-                                        switch ($project->status) {
-                                            case 'Completed':
-                                                $statusStyle = 'background-color: #4CAF50; color: white; border-radius: 5px;';
-                                                break;
-                                            case 'On Going':
-                                                $statusStyle = 'background-color: #2196F3; color: white; border-radius: 5px;';
-                                                break;
-                                            case 'On Hold':
-                                                $statusStyle = 'background-color: #FF5733; color: white; border-radius: 5px;';
-                                                break;
-                                            case 'Planning':
-                                                $statusStyle = 'background-color: #FFD700; color: black; border-radius: 5px;';
-                                                break;
-                                            default:
-                                                // Handle other cases or set a default style
-                                                break;
-                                        }
-                                    @endphp
-
-                                    <div class="project-item">
-                                        <span class="float-start clickable" style="cursor: pointer;" onclick="window.location='{{ route('art-projects.show', ['art_project' => $project->id]) }}';">
-                                            {{ $project->name }}
-                                        </span>
-
-                                        <span class="float-end status"
-                                            style="{{ $statusStyle }}">{{ $project->status }}</span>
-                                    </div>
-                                @endforeach
-                            @else
-                                <p>No assigned projects</p>
-                            @endif
                         </div>
                     </div>
 
