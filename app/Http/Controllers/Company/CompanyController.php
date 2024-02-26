@@ -12,9 +12,10 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::all();
-        return view("", compact("companies"));
+        return view('companies.index', compact('companies'));
     }
 
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -45,7 +46,7 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request , Company $company)
+    public function update(Request $request, Company $company)
     {
         //
         $company->update($request->all());
