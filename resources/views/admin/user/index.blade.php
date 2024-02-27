@@ -129,7 +129,6 @@
 
 
 
-
     </ul>
     <!-- End of Sidebar -->
 
@@ -146,7 +145,7 @@
 
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    @foreach($user as $users)
+                    @foreach($users as $user)
                     <a data-toggle="modal" data-target="#addUserModal-{{ $user->id }}" class="btn btn-sm btn-outline-success">Add</a>
                     @endforeach
                 </div>
@@ -356,7 +355,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('user.add', ['user' => $user->id]) }}" method="post">
+                <form action="{{ route('user.store', ['user' => $user->id]) }}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="modal-body">

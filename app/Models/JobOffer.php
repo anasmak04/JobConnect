@@ -33,9 +33,11 @@ class JobOffer extends Model
     }
 
     public function users()
-{
-    return $this->belongsToMany(User::class, 'job_offer_user', 'job_offer_id', 'user_id')->withTimestamps();
-}
+    {
+        return $this->belongsToMany(User::class, 'job_offer_user', 'job_offer_id', 'user_id')
+            ->withPivot('offer_status')
+            ->withTimestamps();
+    }
 
 
 
