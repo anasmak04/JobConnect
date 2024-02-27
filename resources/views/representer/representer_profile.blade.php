@@ -26,9 +26,13 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-lg-4">
+
+            <h3 class="text-center">Welcome {{ auth()->user()->name }} </h3>
+
+
             <div class="card mb-4 shadow-sm">
                 <div class="card-body text-center">
-                    <img src="{{ $profile }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                    <img src="{{ $profile->getFirstMediaUrl('profile_images') }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                     <h5 class="my-3">{{ $profile->name }}</h5>
                     <p class="text-muted mb-4">{{ $user->location ?? 'User Location' }}</p>
                     <div class="d-flex justify-content-center mb-2">
@@ -38,38 +42,43 @@
                 </div>
             </div>
             <div class="card mb-4 mb-lg-0 shadow-sm">
-                <div class="card-body p-0">
-                    <ul class="list-group list-group-flush rounded-3">
-                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                            <i class="fas fa-building fa-lg text-warning"></i>
-                            <p class="mb-0">
-                                Company Name: <strong>{{$profile->company->name}}</strong>
-                            </p>
-                        </li>
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Company Information</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush rounded-3">
+                            <li class="list-group-item d-flex align-items-center p-3">
+                                <i class="fas fa-building fa-lg text-warning me-3"></i>
+                                <p class="mb-0 flex-grow-1">
+                                    Company Name: <strong>{{ $profile->company->name }}</strong>
+                                </p>
+                            </li>
 
-                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                            <i class="fas fa-info-circle fa-lg text-warning"></i>
-                            <p class="mb-0">
-                                Description: <strong>{{$profile->company->description}}</strong>
-                            </p>
-                        </li>
+                            <li class="list-group-item d-flex align-items-center p-3">
+                                <i class="fas fa-info-circle fa-lg text-warning me-3"></i>
+                                <p class="mb-0 flex-grow-1">
+                                    Description: <strong>{{ $profile->company->description }}</strong>
+                                </p>
+                            </li>
 
-                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                            <i class="fas fa-link fa-lg text-warning"></i>
-                            <p class="mb-0">
-                                Website: <a href="{{$profile->company->website}}" target="_blank">{{$profile->company->website}}</a>
-                            </p>
-                        </li>
+                            <li class="list-group-item d-flex align-items-center p-3">
+                                <i class="fas fa-link fa-lg text-warning me-3"></i>
+                                <p class="mb-0 flex-grow-1">
+                                    Website: <a href="{{ $profile->company->website }}" target="_blank" class="text-primary">{{ $profile->company->website }}</a>
+                                </p>
+                            </li>
 
-                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                            <i class="fas fa-map-marker-alt fa-lg text-warning"></i>
-                            <p class="mb-0">
-                                City: <strong>{{$profile->company->city->name}}</strong>
-                            </p>
-                        </li>
-                    </ul>
-
+                            <li class="list-group-item d-flex align-items-center p-3">
+                                <i class="fas fa-map-marker-alt fa-lg text-warning me-3"></i>
+                                <p class="mb-0">
+                                    City: <strong>{{ $profile->company->city->name }}</strong>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+
             </div>
         </div>
         <div class="col-lg-8">

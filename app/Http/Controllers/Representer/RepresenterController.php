@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Representer;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CompanyRequest;
 use App\Models\City;
 use App\Models\Company;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class RepresenterController extends Controller
 {
