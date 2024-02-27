@@ -19,6 +19,23 @@
     border-radius: 0.25em;
 }
 
+
+.search-form {
+    margin-bottom: 20px;
+}
+.card-title {
+    color: #007bff; /* Bootstrap primary color */
+}
+.card-text {
+    font-size: 14px;
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
 .badge-pending {
     background-color: #ffc107; /* Bootstrap warning color */
 }
