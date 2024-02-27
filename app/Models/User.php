@@ -52,7 +52,9 @@ class User extends Authenticatable implements HasMedia
 
     public function jobOffers()
     {
-        return $this->belongsToMany(JobOffer::class, 'job_offer_user', 'user_id', 'job_offer_id')->withTimestamps();
+        return $this->belongsToMany(JobOffer::class, 'job_offer_user', 'user_id', 'job_offer_id')
+            ->withPivot('offer_status')
+            ->withTimestamps();
     }
 
 

@@ -84,14 +84,49 @@
         </div>
         <div class="col-lg-8">
             <!-- Project status card -->
-            <div class="card mb-4">
+            <div class="card mb-4 mb-md-0">
                 <div class="card-body">
-                    <p><span class="text-primary font-italic">Assignment Project Status</span></p>
-                    <div class="project-item">
-                        <span class="float-left">Project Name 1</span>
-                        <span class="float-right status" style="background-color: #4CAF50; color: white;">Completed</span>
+                    <p class="mb-4"><span class="text-primary font-italic me-1">Job Offers</span> Offers Status</p>
+
+                    <!-- Pending offers -->
+                    <h4 class="mt-4">Pending Offers</h4>
+                    <div class="row">
+                        @forelse ($pendingOffers as $offer)
+                            <div class="col-md-6 mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $offer->title }}</h5>
+                                        <p class="card-text">Status: <span
+                                                class="badge bg-warning text-dark">Pending</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="col-md-12">
+                                <p>No pending offers</p>
+                            </div>
+                        @endforelse
                     </div>
-                    <!-- Add more projects as needed -->
+
+                    <!-- Accepted offers -->
+                    <h4 class="mt-4">Accepted Offers</h4>
+                    <div class="row">
+                        @forelse ($acceptedOffers as $offer)
+                            <div class="col-md-6 mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $offer->title }}</h5>
+                                        <p class="card-text">Status: <span
+                                                class="badge bg-success">Accepted</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="col-md-12">
+                                <p>No accepted offers</p>
+                            </div>
+                        @endforelse
+                    </div>
                 </div>
             </div>
             <!-- Profile edit form -->
@@ -127,13 +162,13 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary">Save Profile</button>
-                        </form>
+                    </form>
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 
 </html>
