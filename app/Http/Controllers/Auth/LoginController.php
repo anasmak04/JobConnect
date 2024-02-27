@@ -49,6 +49,7 @@ class LoginController extends Controller
             return '/candidat/candidat_profile';
         } elseif (Auth::user()->hasRole('representer')) {
             return '/user/{userId}/profile';
+
         }
         return '/user';
     }
