@@ -11,18 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CandidatController extends Controller
 {
-    // Method to display the profile information
     public function profile()
     {
-        // Retrieve the authenticated user
         $user = auth()->user();
-
-        // Fetch pending and accepted offers separately
-        $pendingOffers = $user->jobOffers()->wherePivot('offer_status', 'Pending')->get();
-        $acceptedOffers = $user->jobOffers()->wherePivot('offer_status', 'Accepted')->get();
-
-        // Pass the pending and accepted offers to the view
-        return view('candidat.profile', compact('user', 'pendingOffers', 'acceptedOffers'));
+        return view('candidat.profile', compact('user'));
     }
 
 
@@ -30,70 +22,56 @@ class CandidatController extends Controller
 
     public function saveProfile(Request $request)
 {
-    // Validate the form data
     $request->validate([
         'name' => 'required|string|max:255',
         'skills' => 'array',
         'formations' => 'array',
     ]);
 
-    // Get the authenticated user
     $user = auth()->user();
 
-    // Update the user's name
     $user->name = $request->name;
     $user->save();
 
-    // Sync skills
     if ($request->has('skills')) {
         $user->skills()->syncWithoutDetaching($request->skills);
     }
 
-    // Sync formations
     if ($request->has('formations')) {
         $user->formations()->syncWithoutDetaching($request->formations);
     }
 
-    // Redirect back with a success message
     return redirect()->back()->with('success', 'Profile updated successfully.');
 }
 
     public function index(Request $request)
 {
-    // Retrieve the authenticated user
     $user = auth()->user();
 
     if (!$user) {
         return redirect()->route('some.route')->with('error', 'No user found.');
     }
 
-    // Fetch formations and skills separately
     $formations = Formation::all();
     $skills = Skill::all();
 
-    // Retrieve pending offers for the user
     $pendingOffers = $user->jobOffers()->wherePivot('offer_status', 'Pending')->get();
 
-    // Retrieve accepted offers for the user
     $acceptedOffers = $user->jobOffers()->wherePivot('offer_status', 'Accepted')->get();
 
-    // Compact all the variables into the view
     return view('candidat.candidat_profile', compact('user', 'formations', 'skills', 'pendingOffers', 'acceptedOffers'));
 }
 
 
 
-
-    // Method to show the form for entering representer information
     public function showRepresenterForm()
     {
         return view('candidat.representer_info_form');
     }
 
-    // Method to save representer information
+    
     public function saveRepresenterInfo(Request $request)
     {
-        // Validate the request
         $validatedData = $request->validate([
             'company_name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
@@ -105,11 +83,10 @@ class CandidatController extends Controller
         $user->company_name = $validatedData['company_name'];
         $user->description = $validatedData['description'];
         $user->position = $validatedData['position'];
-        $user->pending_role = 'Pending'; // Set the pending_role to "Pending"
+        $user->pending_role = 'Pending';
 
         $user->save();
 
-        // Redirect the user with a success message
         return redirect()->route('candidat.profile')->with('success', 'Representer information submitted successfully.');
     }
 }
