@@ -39,9 +39,8 @@ Route::post('/logout', [LogoutController::class , "customLogout"])->name("custom
 
 
 
+
 // Route::resource("user", UserController::class);
 // Route::resource("skill", SkillController::class);
 // Route::resource("city", CityController::class);
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-

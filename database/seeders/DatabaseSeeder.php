@@ -3,6 +3,7 @@
 
 use Database\Seeders\CitySeeder;
 use Database\Seeders\RoleSeeder;
+use Database\Seeders\SecteurSeeder;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Role;
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CitySeeder::class,
             RoleSeeder::class,
+            SecteurSeeder::class
         ]);
 
     }

@@ -16,10 +16,17 @@ class JobOfferController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $jobOffers = JobOffer::with('company', 'secteur')->get();
-        return view('jobOffers.index', compact('jobOffers'));
+        $searchTerm = $request->input('searchTerm');
+          if($searchTerm){
+             $jobOffers = JobOffer::where('title', 'LIKE', "%{$searchTerm}%")
+                 ->OrWhere('description', 'LIKE', "%{$searchTerm}%")->get();
+          }
+       else {
+           $jobOffers = JobOffer::with('company', 'secteur')->get();
+       }
+        return view('jobOffers.index', compact('jobOffers', "searchTerm"));
     }
 
 
@@ -68,6 +75,11 @@ class JobOfferController extends Controller
         $jobOffer->delete();
         return redirect()->route("");
     }
+
+
+
+
+
 
 
 }
