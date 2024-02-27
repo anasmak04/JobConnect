@@ -34,17 +34,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <!-- Left Side Of Navbar -->
-                    
+
+                    <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <!-- Display job offers link if the user is a Candidate -->
                         @if (Auth::check() && Auth::user()->hasRole('Candidate'))
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('job_offers.index') }}">Job Offers</a>
                             </li>
-                        @endif
-
-                        <!-- Display company link if the user is a Candidate -->
-                        @if (Auth::check() && Auth::user()->hasRole('Candidate'))
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('companies.index') }}">Companies</a>
                             </li>
@@ -61,9 +58,16 @@
                                     <a class="nav-link"
                                         href="{{ route('user.profile.show', ['userId' => Auth::user()->id]) }}">Profile</a>
                                 </li>
+                                <!-- Inside your navigation bar HTML, typically in a Blade template -->
+
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('recruiters.index') }}">Recruiters</a>
+</li>
+
                             @endif
                         @endif
                     </ul>
+
 
 
 

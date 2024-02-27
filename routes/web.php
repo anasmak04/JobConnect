@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Candidat\CandidatController;
 use App\Http\Controllers\City\CityController;
+use App\Http\Controllers\Recruiter\RecruiterController;
 use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\Offers\JobOfferController;
 use App\Http\Controllers\ProfileRepresenter;
@@ -33,6 +34,12 @@ Route::post('/candidat/profile/save', [CandidatController::class, 'saveProfile']
 Route::get('/job-offers', [JobOfferController::class, 'index'])->name('job_offers.index');
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
 Route::put('/user/{user}/update-company', [RepresenterController::class, 'updateRepresenterCompany'])->name('user.update.company');
+// Route::get('/representers/recruiters', [RepresenterController::class, 'showRecruiters'])->name('representers.recruiters');
+
+Route::post('/recruiter/store', [RecruiterController::class, 'store'])->name('recruiter.store');
+Route::get('/recruiters', [RecruiterController::class, 'showRecruiters'])->name('recruiters.index');
+
+
 Route::get('/job-offers', [JobOfferController::class, 'index'])->name('job_offers.index');
 Route::get('/job-offers/{job_offer}', [JobOfferController::class, 'show'])->name('job_offers.show');
 Route::post('/apply', [JobOfferController::class, 'store'])->name('apply');
