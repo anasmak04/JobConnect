@@ -1,14 +1,16 @@
 <?php
 
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\CandidatController;
 use App\Http\Controllers\City\CityController;
 use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\Offers\JobOfferController;
-use App\Http\Controllers\RepresenterController;
-use App\Http\Controllers\Skill\SkillController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileRepresenter;
-use App\Http\Controllers\CandidatController;
+use App\Http\Controllers\Representer\RepresenterController;
+use App\Http\Controllers\Skill\SkillController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,6 +30,14 @@ Route::get('/candidat/candidat_profile', [CandidatController::class, 'index'])->
 Route::get('/job-offers', [JobOfferController::class, 'index'])->name('job_offers.index');
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
 Route::put('/user/{user}/update-company', [RepresenterController::class, 'updateRepresenterCompany'])->name('user.update.company');
+Route::get('/job-offers', [JobOfferController::class, 'index'])->name('job_offers.index');
+Route::get('/job-offers/{job_offer}', [JobOfferController::class, 'show'])->name('job_offers.show');
+Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
+Route::get('/companies/{company}/job-offers', [CompanyController::class, 'showJobOffers'])->name('companies.job_offers');
+Route::post('/logout', [LogoutController::class , "customLogout"])->name("custom.logout");
+
+
+
 
 // Route::resource("user", UserController::class);
 // Route::resource("skill", SkillController::class);

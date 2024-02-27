@@ -9,12 +9,19 @@ use Illuminate\Http\Request;
 class JobOfferController extends Controller
 {
 
+
+    public function show(JobOffer $job_offer)
+    {
+        return view('jobOffers.show', compact('job_offer'));
+    }
+
+
     public function index()
     {
         $jobOffers = JobOffer::with('company', 'secteur')->get();
-        return view('jobOffers.index', compact('jobOffers')); // Adjusted view path
+        return view('jobOffers.index', compact('jobOffers'));
     }
-    
+
 
     /**
      * Show the form for creating a new resource.

@@ -15,7 +15,7 @@ class CompanyController extends Controller
         return view('companies.index', compact('companies'));
     }
 
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -42,6 +42,12 @@ class CompanyController extends Controller
     {
         return view("");
     }
+    public function showJobOffers(Company $company)
+    {
+        $jobOffers = $company->jobOffers()->with('secteur')->get();
+        return view('jobOffers.index', compact('jobOffers'));
+    }
+
 
     /**
      * Update the specified resource in storage.
