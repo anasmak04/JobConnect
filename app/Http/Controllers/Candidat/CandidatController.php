@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Candidat;
 
+use App\Http\Controllers\Controller;
 use App\Models\Formation;
 use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
-use Symfony\Component\HttpFoundation\Response;
 
 class CandidatController extends Controller
 {

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\CandidatController;
+use App\Http\Controllers\Candidat\CandidatController;
 use App\Http\Controllers\City\CityController;
 use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\Offers\JobOfferController;
