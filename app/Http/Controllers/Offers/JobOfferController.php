@@ -10,7 +10,7 @@ class JobOfferController extends Controller
 {
 
 
-  
+
 
 
     public function index(Request $request)
@@ -18,7 +18,14 @@ class JobOfferController extends Controller
         $searchTerm = $request->input('searchTerm');
           if($searchTerm){
              $jobOffers = JobOffer::where('title', 'LIKE', "%{$searchTerm}%")
-                 ->OrWhere('description', 'LIKE', "%{$searchTerm}%")->get();
+                 ->orWhere('description', 'LIKE', "%{$searchTerm}%")
+                 ->orWhereHas('company', function($query) use ($searchTerm) {
+                     $query->where('name', 'LIKE', "%{$searchTerm}%");
+                 })
+
+                 ->orWhereHas('city', function($item) use($searchTerm) {
+                     $item->where('name', "LIKE" , "%{$searchTerm}%");
+                 })->get();
           }
        else {
            $jobOffers = JobOffer::with('company', 'secteur')->get();

@@ -27,7 +27,28 @@ class FormationSeeder extends Seeder
                 'start_date' => '2023-02-20',
                 'end_date' => '2023-05-20',
             ],
-            // Add more formations as needed
+
+            [
+                'title' => 'Mobile Developement',
+                'description' => 'Comprehensive course on mobile developement',
+                'start_date' => '2023-02-20',
+                'end_date' => '2023-05-20',
+            ],
+
+
+            [
+                'title' => 'Devops',
+                'description' => 'Comprehensive course on Devops',
+                'start_date' => '2023-02-20',
+                'end_date' => '2023-05-20',
+            ],
+
+            [
+                'title' => 'AI',
+                'description' => 'Comprehensive course on AI',
+                'start_date' => '2023-02-20',
+                'end_date' => '2023-05-20',
+            ],
         ];
 
         // Insert the formations into the database
