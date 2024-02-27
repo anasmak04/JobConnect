@@ -29,34 +29,34 @@ class CandidatController extends Controller
 
 
     public function saveProfile(Request $request)
-    {
-        // Validate the form data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'skills' => 'array',
-            'formations' => 'array',
-        ]);
+{
+    // Validate the form data
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'skills' => 'array',
+        'formations' => 'array',
+    ]);
 
-        // Get the authenticated user
-        $user = auth()->user();
+    // Get the authenticated user
+    $user = auth()->user();
 
-        // Update the user's name
-        $user->name = $request->name;
-        $user->save();
+    // Update the user's name
+    $user->name = $request->name;
+    $user->save();
 
-        // Sync skills
-        if ($request->has('skills')) {
-            $user->skills()->sync($request->skills);
-        }
-
-        // Sync formations
-        if ($request->has('formations')) {
-            $user->formations()->sync($request->formations);
-        }
-
-        // Redirect back with a success message
-        return redirect()->back()->with('success', 'Profile updated successfully.');
+    // Sync skills
+    if ($request->has('skills')) {
+        $user->skills()->syncWithoutDetaching($request->skills);
     }
+
+    // Sync formations
+    if ($request->has('formations')) {
+        $user->formations()->syncWithoutDetaching($request->formations);
+    }
+
+    // Redirect back with a success message
+    return redirect()->back()->with('success', 'Profile updated successfully.');
+}
 
     public function index(Request $request)
 {
