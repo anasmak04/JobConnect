@@ -34,7 +34,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <!-- Left Side Of Navbar -->
-
+                    
                     <ul class="navbar-nav me-auto">
                         <!-- Display job offers link if the user is a Candidate -->
                         @if (Auth::check() && Auth::user()->hasRole('Candidate'))
@@ -43,14 +43,28 @@
                             </li>
                         @endif
 
-                    <!-- Display company link if the user is a Candidate -->
+                        <!-- Display company link if the user is a Candidate -->
                         @if (Auth::check() && Auth::user()->hasRole('Candidate'))
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('companies.index') }}">Companies</a>
                             </li>
                         @endif
 
+                        <!-- Add Profile link based on user's role -->
+                        @if (Auth::check())
+                            @if (Auth::user()->hasRole('Candidate'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('candidat.profile') }}">Profile</a>
+                                </li>
+                            @elseif (Auth::user()->hasRole('Representer'))
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="{{ route('user.profile.show', ['userId' => Auth::user()->id]) }}">Profile</a>
+                                </li>
+                            @endif
+                        @endif
                     </ul>
+
 
 
                     <!-- Right Side Of Navbar -->
@@ -74,11 +88,12 @@
                             <li class="nav-item dropdown">
 
                                 <a class="dropdown-item" href="{{ route('custom.logout') }}"
-                                   onclick="event.preventDefault(); document.getElementById('custom-logout-form').submit();">
+                                    onclick="event.preventDefault(); document.getElementById('custom-logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
-                                <form id="custom-logout-form" action="{{ route('custom.logout') }}" method="POST" class="d-none">
+                                <form id="custom-logout-form" action="{{ route('custom.logout') }}" method="POST"
+                                    class="d-none">
                                     @csrf
                                 </form>
 
