@@ -34,6 +34,20 @@
 
 
     <div class="container">
+        <form action="{{ route('companies.index') }}" method="GET" class="form-inline">
+            <div class="form-group mb-2">
+                <select name="city_id"  class="form-select" aria-label="Default select example">
+                    <option value="">Select a City</option>
+                    @foreach($cities as $city)
+                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Search</button>
+        </form>
+
+
+
         <h1>Companies</h1>
         <div class="row">
             @foreach ($companies as $company)
@@ -56,7 +70,7 @@
             @endforeach
         </div>
     </div>
-    
+
 
 
 </div>
