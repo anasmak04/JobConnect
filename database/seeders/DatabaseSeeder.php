@@ -2,8 +2,10 @@
 
 
 use Database\Seeders\CitySeeder;
+use Database\Seeders\FormationSeeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\SecteurSeeder;
+use Database\Seeders\SkillSeeder;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Role;
@@ -23,7 +25,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CitySeeder::class,
             RoleSeeder::class,
-            SecteurSeeder::class
+            SecteurSeeder::class,
+            FormationSeeder::class,
+            SkillSeeder::class,
         ]);
 
     }

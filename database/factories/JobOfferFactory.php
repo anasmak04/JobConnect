@@ -19,15 +19,15 @@ class JobOfferFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->jobTitle,
-            'description' => $this->faker->text($maxNbChars = 200),
-            'company_id' => Company::factory(),  // Crée une nouvelle entreprise pour chaque offre d'emploi si nécessaire
-            'secteur_id' => Secteur::factory(),  // Crée un nouveau secteur pour chaque offre d'emploi si nécessaire
-            'location' => $this->faker->city,
-            'type' => $this->faker->randomElement(['Full-time', 'Part-time', 'Contract', 'Temporary']),
-            'salary' => $this->faker->numberBetween($min = 30000, $max = 100000),
-            'start_date' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
-            'end_date' => $this->faker->optional()->date($format = 'Y-m-d', $max = 'now'),
+//            'title' => $this->faker->jobTitle,
+//            'description' => $this->faker->text($maxNbChars = 200),
+//            'company_id' => 2,  // Crée une nouvelle entreprise pour chaque offre d'emploi si nécessaire
+//            'secteur_id' => Secteur::factory(),  // Crée un nouveau secteur pour chaque offre d'emploi si nécessaire
+//            'location' => $this->faker->city,
+//            'type' => $this->faker->randomElement(['Full-time', 'Part-time', 'Contract', 'Temporary']),
+//            'salary' => $this->faker->numberBetween($min = 30000, $max = 100000),
+//            'start_date' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+//            'end_date' => $this->faker->optional()->date($format = 'Y-m-d', $max = 'now'),
         ];
     }
 }

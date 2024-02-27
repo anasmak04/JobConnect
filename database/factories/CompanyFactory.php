@@ -17,9 +17,9 @@ class CompanyFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->company,
-            'description' => $this->faker->catchPhrase,
-            'website' => $this->faker->domainName,
+//            'name' => $this->faker->company,
+//            'description' => $this->faker->catchPhrase,
+//            'website' => $this->faker->domainName,
             // 'logo' => $this->faker->imageUrl(640, 480, 'business', true),
             // Assurez-vous que la colonne 'city_id' est correctement gérée si votre modèle Company y fait référence.
         ];

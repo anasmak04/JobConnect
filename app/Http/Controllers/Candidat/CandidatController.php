@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Candidat;
 
+use App\Http\Controllers\Controller;
 use App\Models\Formation;
 use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
-use Symfony\Component\HttpFoundation\Response;
 
 class CandidatController extends Controller
 {
@@ -25,7 +24,7 @@ class CandidatController extends Controller
     // {
     //     // Retrieve the authenticated user
     //     $user = auth()->user();
-        
+
     //     // Fetch skills and formations from the database
     //     $skills = Skill::all();
     //     $formations = Formation::all();
@@ -56,7 +55,7 @@ class CandidatController extends Controller
 
     // Method to fetch the authenticated candidate along with their skills and formations
 
-    
+
 public function saveProfile(Request $request)
 {
     // Validate the form data
@@ -75,12 +74,12 @@ public function saveProfile(Request $request)
 
     // Sync skills
     if ($request->has('skills')) {
-        $user->skills()->sync($request->skills);
+        $user->skills()->syncWithoutDetaching($request->skills);
     }
 
     // Sync formations
     if ($request->has('formations')) {
-        $user->formations()->sync($request->formations);
+        $user->formations()->syncWithoutDetaching($request->formations);
     }
 
     // Redirect back with a success message
@@ -127,7 +126,7 @@ public function saveProfile(Request $request)
         $user->description = $validatedData['description'];
         $user->position = $validatedData['position'];
         $user->pending_role = 'Pending'; // Set the pending_role to "Pending"
-    
+
         $user->save();
 
         // Redirect the user with a success message
