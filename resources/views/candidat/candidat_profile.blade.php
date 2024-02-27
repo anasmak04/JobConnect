@@ -159,17 +159,51 @@
             <div class="col-lg-8">
                 <div class="card mb-4 mb-md-0">
                     <div class="card-body">
-                        <p class="mb-4"><span class="text-primary font-italic me-1">Assignment</span> Project Status
-                        </p>
-                        <!-- Static projects -->
-                        <div class="project-item">
-                            <span class="float-start clickable" style="cursor: pointer;">Project Name 1</span>
-                            <span class="float-end status"
-                                style="background-color: #4CAF50; color: white; border-radius: 5px;">Completed</span>
+                        <p class="mb-4"><span class="text-primary font-italic me-1">Job Offers</span> Offers Status</p>
+            
+                        <!-- Pending offers -->
+                        <h4 class="mt-4">Pending Offers</h4>
+                        <div class="row">
+                            @forelse ($pendingOffers as $offer)
+                                <div class="col-md-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $offer->title }}</h5>
+                                            <p class="card-text">Status: <span
+                                                    class="badge bg-warning text-dark">Pending</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="col-md-12">
+                                    <p>No pending offers</p>
+                                </div>
+                            @endforelse
                         </div>
-                        <!-- Add other static projects -->
+            
+                        <!-- Accepted offers -->
+                        <h4 class="mt-4">Accepted Offers</h4>
+                        <div class="row">
+                            @forelse ($acceptedOffers as $offer)
+                                <div class="col-md-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $offer->title }}</h5>
+                                            <p class="card-text">Status: <span
+                                                    class="badge bg-success">Accepted</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="col-md-12">
+                                    <p>No accepted offers</p>
+                                </div>
+                            @endforelse
+                        </div>
                     </div>
                 </div>
+            
+                <!-- Profile form -->
                 <div class="card mb-4">
                     <div class="card-body">
                         <form action="{{ route('candidat.save.profile') }}" method="POST">
@@ -180,7 +214,7 @@
                                 <input type="text" name="name" id="name" class="form-control" required>
                             </div>
                             <!-- Other profile fields -->
-
+            
                             <!-- Skills and Formations -->
                             <div class="d-flex">
                                 <!-- Skills -->
@@ -196,7 +230,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-
+            
                                 <!-- Formations -->
                                 <div class="form-group flex-grow-1">
                                     <label for="formations">Formations</label>
@@ -211,14 +245,13 @@
                                     </div>
                                 </div>
                             </div>
-
-
+            
                             <button type="submit" class="btn btn-primary">Save Profile</button>
                         </form>
-
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 

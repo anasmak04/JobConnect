@@ -35,6 +35,8 @@ Route::get('/companies', [CompanyController::class, 'index'])->name('companies.i
 Route::put('/user/{user}/update-company', [RepresenterController::class, 'updateRepresenterCompany'])->name('user.update.company');
 Route::get('/job-offers', [JobOfferController::class, 'index'])->name('job_offers.index');
 Route::get('/job-offers/{job_offer}', [JobOfferController::class, 'show'])->name('job_offers.show');
+Route::post('/apply', [JobOfferController::class, 'store'])->name('apply');
+
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
 Route::get('/companies/{company}/job-offers', [CompanyController::class, 'showJobOffers'])->name('companies.job_offers');
 Route::post('/logout', [LogoutController::class , "customLogout"])->name("custom.logout");

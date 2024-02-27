@@ -22,6 +22,19 @@
             <p class="card-text">Salary: {{ $job_offer->salary }}</p>
             <p class="card-text">Start Date: {{ $job_offer->start_date }}</p>
             <p class="card-text">End Date: {{ $job_offer->end_date }}</p>
+            @if ($userJobOffer)
+                @if ($userJobOffer->pivot->offer_status === 'Pending')
+                    <button type="button" class="btn btn-warning disabled">Pending</button>
+                @elseif ($userJobOffer->pivot->offer_status === 'Accepted')
+                    <button type="button" class="btn btn-success disabled">Accepted</button>
+                @endif
+            @else
+                <form action="{{ route('apply') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="job_offer_id" value="{{ $job_offer->id }}">
+                    <button type="submit" class="btn btn-primary">Apply</button>
+                </form>
+            @endif
             <a href="{{ route('job_offers.index') }}" class="btn btn-primary">Back to Job Offers</a>
         </div>
     </div>

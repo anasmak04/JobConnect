@@ -17,75 +17,46 @@ class CandidatController extends Controller
         // Retrieve the authenticated user
         $user = auth()->user();
 
-        // Return the view with the user's profile information
-        return view('candidat.profile', compact('user'));
+        // Fetch pending and accepted offers separately
+        $pendingOffers = $user->jobOffers()->wherePivot('offer_status', 'Pending')->get();
+        $acceptedOffers = $user->jobOffers()->wherePivot('offer_status', 'Accepted')->get();
+
+        // Pass the pending and accepted offers to the view
+        return view('candidat.profile', compact('user', 'pendingOffers', 'acceptedOffers'));
     }
 
-    // public function editProfile()
-    // {
-    //     // Retrieve the authenticated user
-    //     $user = auth()->user();
-        
-    //     // Fetch skills and formations from the database
-    //     $skills = Skill::all();
-    //     $formations = Formation::all();
 
-    //     // Return the view with the user's profile information and available skills/formations
-    //     return view('candidat.profile', compact('user', 'skills', 'formations'));
-    // }
 
-    // // Method to save the updated profile information
-    // public function updateProfile(Request $request)
-    // {
-    //     // Validate the request
-    //     $validatedData = $request->validate([
-    //         // Define validation rules for other fields
-    //         'skills.*' => 'exists:skills,id', // Validate that the selected skills exist in the database
-    //         'formations.*' => 'exists:formations,id', // Validate that the selected formations exist in the database
-    //     ]);
 
-    //     // Retrieve the authenticated user
-    //     $user = auth()->user();
+    public function saveProfile(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'skills' => 'array',
+            'formations' => 'array',
+        ]);
 
-    //     // Update the user's profile information
-    //     $user->update($validatedData);
+        // Get the authenticated user
+        $user = auth()->user();
 
-    //     // Redirect back to the profile page with a success message
-    //     return redirect()->route('candidat.profile')->with('success', 'Profile updated successfully.');
-    // }
+        // Update the user's name
+        $user->name = $request->name;
+        $user->save();
 
-    // Method to fetch the authenticated candidate along with their skills and formations
+        // Sync skills
+        if ($request->has('skills')) {
+            $user->skills()->sync($request->skills);
+        }
 
-    
-public function saveProfile(Request $request)
-{
-    // Validate the form data
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'skills' => 'array',
-        'formations' => 'array',
-    ]);
+        // Sync formations
+        if ($request->has('formations')) {
+            $user->formations()->sync($request->formations);
+        }
 
-    // Get the authenticated user
-    $user = auth()->user();
-
-    // Update the user's name
-    $user->name = $request->name;
-    $user->save();
-
-    // Sync skills
-    if ($request->has('skills')) {
-        $user->skills()->sync($request->skills);
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Profile updated successfully.');
     }
-
-    // Sync formations
-    if ($request->has('formations')) {
-        $user->formations()->sync($request->formations);
-    }
-
-    // Redirect back with a success message
-    return redirect()->back()->with('success', 'Profile updated successfully.');
-}
 
     public function index(Request $request)
 {
@@ -100,9 +71,17 @@ public function saveProfile(Request $request)
     $formations = Formation::all();
     $skills = Skill::all();
 
+    // Retrieve pending offers for the user
+    $pendingOffers = $user->jobOffers()->wherePivot('offer_status', 'Pending')->get();
+
+    // Retrieve accepted offers for the user
+    $acceptedOffers = $user->jobOffers()->wherePivot('offer_status', 'Accepted')->get();
+
     // Compact all the variables into the view
-    return view('candidat.candidat_profile', compact('user', 'formations', 'skills'));
+    return view('candidat.candidat_profile', compact('user', 'formations', 'skills', 'pendingOffers', 'acceptedOffers'));
 }
+
+
 
 
     // Method to show the form for entering representer information
@@ -127,7 +106,7 @@ public function saveProfile(Request $request)
         $user->description = $validatedData['description'];
         $user->position = $validatedData['position'];
         $user->pending_role = 'Pending'; // Set the pending_role to "Pending"
-    
+
         $user->save();
 
         // Redirect the user with a success message
