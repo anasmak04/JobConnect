@@ -10,10 +10,7 @@ class JobOfferController extends Controller
 {
 
 
-    public function show(JobOffer $job_offer)
-    {
-        return view('jobOffers.show', compact('job_offer'));
-    }
+  
 
 
     public function index(Request $request)
@@ -29,6 +26,11 @@ class JobOfferController extends Controller
         return view('jobOffers.index', compact('jobOffers', "searchTerm"));
     }
 
+
+    public function show(JobOffer $job_offer)
+{
+    return view('jobOffers.show', compact('job_offer'));
+}
 
     /**
      * Show the form for creating a new resource.
