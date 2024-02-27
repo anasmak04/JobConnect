@@ -19,7 +19,7 @@ class ProfileRepresenter extends Controller
             })->with('company')->first();
 
 
-        return view("candidat.candidat_profile", compact("profile"));
+        return view("representer.representer_profile", compact("profile"));
     }
 
 

@@ -49,6 +49,7 @@ class CompanyController extends Controller
     {
         return view("");
     }
+  
 
     /**
      * Update the specified resource in storage.

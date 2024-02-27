@@ -9,12 +9,16 @@ use Illuminate\Http\Request;
 class JobOfferController extends Controller
 {
 
+
+  
+
+
     public function index()
     {
         $jobOffers = JobOffer::with('company', 'secteur')->get();
-        return view('jobOffers.index', compact('jobOffers')); // Adjusted view path
+        return view('jobOffers.index', compact('jobOffers'));
     }
-    
+
 
     public function show(JobOffer $job_offer)
 {
