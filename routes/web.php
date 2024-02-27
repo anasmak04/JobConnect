@@ -41,4 +41,3 @@ Route::get('/companies', [CompanyController::class, 'index'])->name('companies.i
 Route::get('/companies/{company}/job-offers', [CompanyController::class, 'showJobOffers'])->name('companies.job_offers');
 Route::post('/logout', [LogoutController::class , "customLogout"])->name("custom.logout");
 
-
