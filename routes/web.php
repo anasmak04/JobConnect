@@ -27,6 +27,9 @@ Route::get('/user/{userId}/profile', [\App\Http\Controllers\Representer\ProfileR
 Route::get('/candidat/fill-representer-info', [CandidatController::class, 'showRepresenterForm'])->name('candidat.fill.representer.info');
 Route::post('/candidat/save-representer-info', [CandidatController::class, 'saveRepresenterInfo'])->name('candidat.save.representer.info');
 Route::get('/candidat/candidat_profile', [CandidatController::class, 'index'])->name('candidat.profile');
+Route::get('/candidat/profile/edit', [CandidatController::class, 'editProfile'])->name('candidat.edit.profile');
+Route::post('/candidat/profile/save', [CandidatController::class, 'saveProfile'])->name('candidat.save.profile');
+
 Route::get('/job-offers', [JobOfferController::class, 'index'])->name('job_offers.index');
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
 Route::put('/user/{user}/update-company', [RepresenterController::class, 'updateRepresenterCompany'])->name('user.update.company');
@@ -35,13 +38,5 @@ Route::get('/job-offers/{job_offer}', [JobOfferController::class, 'show'])->name
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
 Route::get('/companies/{company}/job-offers', [CompanyController::class, 'showJobOffers'])->name('companies.job_offers');
 Route::post('/logout', [LogoutController::class , "customLogout"])->name("custom.logout");
-
-
-
-
-// Route::resource("user", UserController::class);
-// Route::resource("skill", SkillController::class);
-// Route::resource("city", CityController::class);
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

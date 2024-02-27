@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 class CompanyController extends Controller
 {
 
+    public function showJobOffers(Company $company)
+    {
+        $jobOffers = $company->jobOffers()->with('secteur')->get();
+        return view('jobOffers.index', compact('jobOffers'));
+    }
+
+
     public function index()
     {
         $companies = Company::all();
@@ -42,12 +49,7 @@ class CompanyController extends Controller
     {
         return view("");
     }
-    public function showJobOffers(Company $company)
-    {
-        $jobOffers = $company->jobOffers()->with('secteur')->get();
-        return view('jobOffers.index', compact('jobOffers'));
-    }
-
+  
 
     /**
      * Update the specified resource in storage.
