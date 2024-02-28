@@ -31,6 +31,18 @@
                     </div>
                 </div>
             </form>
+
+            <form action="{{ route('job_offers.index') }}" method="GET" class="form-inline">
+                <div class="form-group mb-2">
+                    <select name="secteur_id"  class="form-select" aria-label="Default select example">
+                        <option value="">Select a City</option>
+                        @foreach($secteurs as $secteur)
+                            <option value="{{ $secteur->id }}">{{ $secteur->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Search</button>
+            </form>
         </div>
     </div>
 

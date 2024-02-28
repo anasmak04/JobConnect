@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -16,11 +17,19 @@ class CompanyController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $companies = Company::all();
-        return view('companies.index', compact('companies'));
+        $cities = City::all();
+
+        if ($request->has('city_id')) {
+            $companies = Company::where('city_id', $request->city_id)->get();
+        } else {
+            $companies = Company::all();
+        }
+
+        return view('companies.index', compact('companies', 'cities'));
     }
+
 
 
     /**
@@ -49,7 +58,7 @@ class CompanyController extends Controller
     {
         return view("");
     }
-  
+
 
     /**
      * Update the specified resource in storage.
