@@ -18,12 +18,12 @@ class ProfileRepresenter extends Controller
             $query->where('name', 'Representer');
         })->with('company')->first();
 
-        
+
     $recruiters = User::whereHas('roles', function ($query) {
         $query->where('name', 'recruiter');
     })->get();
 
-    
+
     return view("representer.representer_profile", compact("profile", "recruiters"));
 }
 
