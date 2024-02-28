@@ -26,31 +26,57 @@ class RecruiterController extends Controller
         return view("recruter.index");
     }
 
-     public function store(Request $request): RedirectResponse
-     {
-         // Validate the request data
-         $request->validate([
-             'name' => 'required|string',
-             'email' => 'required|email|unique:users,email',
-             'position' => 'required|string',
-             'password' => 'required|string|min:8',
-         ]);
+    //  public function store(Request $request): RedirectResponse
+    //  {
+    //      // Validate the request data
+    //      $request->validate([
+    //          'name' => 'required|string',
+    //          'email' => 'required|email|unique:users,email',
+    //          'position' => 'required|string',
+    //          'password' => 'required|string|min:8',
+    //      ]);
 
-         // Create a new User instance
-         $recruiter = new User();
-         $recruiter->name = $request->name;
-         $recruiter->email = $request->email;
-         $recruiter->position = $request->position;
-         $recruiter->password = Hash::make($request->password);
+    //      // Create a new User instance
+    //      $recruiter = new User();
+    //      $recruiter->name = $request->name;
+    //      $recruiter->email = $request->email;
+    //      $recruiter->position = $request->position;
+    //      $recruiter->password = Hash::make($request->password);
 
-         // Save the User instance to the database
-         $recruiter->save();
+    //      // Save the User instance to the database
+    //      $recruiter->save();
 
-         $recruiter->roles()->attach(3);
+    //      $recruiter->roles()->attach(3);
 
-         // Redirect the user after successful creation
-         return redirect()->route('user.profile.show', ["userId" => Auth::id()])->with('success', 'Recruiter created successfully!');
-     }
+    //      // Redirect the user after successful creation
+    //      return redirect()->route('user.profile.show', ["userId" => Auth::id()])->with('success', 'Recruiter created successfully!');
+    //  }
+
+    public function store(Request $request): RedirectResponse
+{
+    $request->validate([
+        'name' => 'required|string',
+        'email' => 'required|email|unique:users,email',
+        'position' => 'required|string',
+        'password' => 'required|string|min:8',
+    ]);
+
+    $representerCompanyId = Auth::user()->company_id;
+
+    $recruiter = new User();
+    $recruiter->name = $request->name;
+    $recruiter->email = $request->email;
+    $recruiter->position = $request->position;
+    $recruiter->password = Hash::make($request->password);
+
+    $recruiter->company_id = $representerCompanyId;
+
+    $recruiter->save();
+
+    $recruiter->roles()->attach(3); 
+
+    return redirect()->route('user.profile.show', ["userId" => Auth::id()])->with('success', 'Recruiter created successfully!');
+}
 
     public function showRecruiters()
     {

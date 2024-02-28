@@ -47,6 +47,8 @@ class RepresenterController extends Controller
         return view('representer.profile', compact('userDetails', 'company'));
     }
 
+    
+
 
 
     public function updateRepresenterCompany(Request $request, User $user)
