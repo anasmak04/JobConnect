@@ -29,6 +29,8 @@
         <div class="row">
             <div class="col-lg-4">
 
+                
+
                 <h3 class="text-center">Welcome {{ auth()->user()->name }} </h3>
 
 
@@ -90,7 +92,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Create Recruiter User</h5>
                         <form action="{{ route('recruiter.store') }}" method="POST">
-                            @csrf
+                            @csrf <!-- CSRF token -->
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name" name="name" required>
@@ -103,14 +105,17 @@
                                 <label for="position" class="form-label">Position</label>
                                 <input type="text" class="form-control" id="position" name="position" required>
                             </div>
-                            <!-- Add more fields as needed -->
-                            <button type="submit" class="btn btn-primary">Create User</button>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create Recruiter</button>
                         </form>
                     </div>
                 </div>
                 
+                
 
-                    <!-- Section to display recruiters created by the Representer -->
                     <div class="card mb-4 shadow-sm">
                         <div class="card-body">
                             {{-- <h5 class="card-title">Recruiters Created</h5> --}}
