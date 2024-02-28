@@ -86,6 +86,6 @@ class CandidatController extends Controller
 
         $user->save();
 
-        return redirect()->route('candidat.profile')->with('success', 'Representer information submitted successfully.');
+        return redirect()->route('user.profile.show')->with('success', 'Representer information submitted successfully.');
     }
 }

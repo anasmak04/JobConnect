@@ -48,8 +48,13 @@ class LoginController extends Controller
                 } elseif (Auth::user()->hasRole('candidate')) {
                     return '/candidat/candidat_profile';
                 } elseif (Auth::user()->hasRole('representer')) {
-                    return '/user/' . Auth::id() . '/profile'; 
+                    return '/user/' . Auth::id() . '/profile';
                 }
+                elseif (Auth::user()->hasRole('recruter')) {
+                    return '/user/' . Auth::id() . '/recruter';
+                }
+
+
             }
             return '/user';
         }

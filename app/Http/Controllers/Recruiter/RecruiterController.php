@@ -18,6 +18,14 @@ class RecruiterController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
+
+    public function index()
+    {
+
+        return view("recruter.index");
+    }
+
      public function store(Request $request): RedirectResponse
      {
          // Validate the request data
@@ -27,19 +35,19 @@ class RecruiterController extends Controller
              'position' => 'required|string',
              'password' => 'required|string|min:8',
          ]);
-     
+
          // Create a new User instance
          $recruiter = new User();
          $recruiter->name = $request->name;
          $recruiter->email = $request->email;
          $recruiter->position = $request->position;
-         $recruiter->password = Hash::make($request->password); 
-     
+         $recruiter->password = Hash::make($request->password);
+
          // Save the User instance to the database
          $recruiter->save();
-     
+
          $recruiter->roles()->attach(3);
-     
+
          // Redirect the user after successful creation
          return redirect()->route('user.profile.show', ["userId" => Auth::id()])->with('success', 'Recruiter created successfully!');
      }
