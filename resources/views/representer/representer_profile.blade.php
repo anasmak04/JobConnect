@@ -36,9 +36,9 @@
 
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body text-center">
-                        <img src="{{ $profile->getFirstMediaUrl('profile_images') }}" alt="avatar"
-                            class="rounded-circle img-fluid" style="width: 150px;">
-                        <h5 class="my-3">{{ $profile->name }}</h5>
+                        {{-- <img src="{{ $profile->getFirstMediaUrl('profile_images') }}" alt="avatar"
+                            class="rounded-circle img-fluid" style="width: 150px;"> --}}
+                        {{-- <h5 class="my-3">{{ $profile->name }}</h5> --}}
                         <p class="text-muted mb-4">{{ $user->location ?? 'User Location' }}</p>
                         <div class="d-flex justify-content-center mb-2">
                             <button type="button" class="btn btn-primary me-2">Follow</button>
@@ -56,7 +56,7 @@
                                 <li class="list-group-item d-flex align-items-center p-3">
                                     <i class="fas fa-building fa-lg text-warning me-3"></i>
                                     <p class="mb-0 flex-grow-1">
-                                        Company Name: <strong>{{ $profile->company->name }}</strong>
+                                        {{-- Company Name: <strong>{{ $profile->company->name }}</strong> --}}
                                     </p>
                                 </li>
 

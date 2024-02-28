@@ -60,7 +60,6 @@ class LoginController extends Controller
         }
 
 
-
     }
 
 }

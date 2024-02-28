@@ -60,10 +60,9 @@
                                 </li>
                                 <!-- Inside your navigation bar HTML, typically in a Blade template -->
 
-<li class="nav-item">
-    <a class="nav-link" href="{{ route('recruiters.index') }}">Recruiters</a>
-</li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('recruiters.index') }}">Recruiters</a>
+                                </li>
                             @endif
                         @endif
                     </ul>

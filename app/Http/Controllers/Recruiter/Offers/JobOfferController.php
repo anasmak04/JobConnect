@@ -12,19 +12,19 @@ class JobOfferController extends Controller
 {
 
     public function index(Request $request)
-    {
-        $searchTerm = $request->input('searchTerm');
-        if($searchTerm){
-            $jobOffers = JobOffer::where('title', 'LIKE', "%{$searchTerm}%")
-                ->OrWhere('description', 'LIKE', "%{$searchTerm}%")->get();
-        }
-        else {
-            $user = User::find(auth()->id());
-            $userJobOffers = $user->jobOffers()->withPivot('offer_status')->get()->keyBy('id');
-            $jobOffers = JobOffer::with(['company', 'secteur'])->get();
-        }
-        return view('jobOffers.index', compact('jobOffers', "searchTerm", "user", "userJobOffers"));
+{
+    $searchTerm = $request->input('searchTerm');
+    if ($searchTerm) {
+        $jobOffers = JobOffer::where('title', 'LIKE', "%{$searchTerm}%")
+            ->orWhere('description', 'LIKE', "%{$searchTerm}%")->get();
+    } else {
+        $user = User::find(auth()->id());
+        $userJobOffers = $user->jobOffers()->withPivot('offer_status')->get()->keyBy('id');
+        $jobOffers = JobOffer::with(['company', 'secteur'])->get();
     }
+    $secteurs = \App\Models\Secteur::all(); // Fetch all secteurs
+    return view('jobOffers.index', compact('jobOffers', 'searchTerm', 'user', 'userJobOffers', 'secteurs'));
+}
 
 
     public function show(JobOffer $job_offer)
