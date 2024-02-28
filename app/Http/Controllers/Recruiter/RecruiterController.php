@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 
 class RecruiterController extends Controller
 {
@@ -18,13 +19,30 @@ class RecruiterController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    //  public function showProfile()
+    //  {
+    //      // Get the authenticated recruiter
+    //      $recruiter = Auth::user();
+ 
+    //      // Load any additional data if necessary
+ 
+    //      // For now, assuming $recruiters is a collection of recruiters, you can fetch them as per your application logic
+    //      $recruiters = User::whereHas('roles', function ($query) {
+    //          $query->where('name', 'recruiter');
+    //      })->get();
+ 
+    //      // Return the recruiter profile view along with $recruiters data
+    //      return view('recruiter.profile', compact('recruiter', 'recruiters'));
+    //  }
 
-
-    public function index()
-    {
-
-        return view("recruter.index");
-    }
+     public function index(): Response
+     {
+         // Get the authenticated recruiter
+         $recruiter = Auth::user();
+ 
+         // Pass the recruiter data to the view and return the view
+         return response()->view('recruiter.index', compact('recruiter'));
+     }
 
     //  public function store(Request $request): RedirectResponse
     //  {

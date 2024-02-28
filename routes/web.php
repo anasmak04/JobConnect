@@ -41,6 +41,7 @@ Route::put('/user/{user}/update-company', [RepresenterController::class, 'update
 Route::get('/representer/profile', [RepresenterController::class, 'showProfile'])->name('representer.profile');
 
 
+Route::get('/recruiter/profile', [RecruiterController::class, 'index'])->name('recruiter.index');
 Route::post('/recruiter/store', [RecruiterController::class, 'store'])->name('recruiter.store');
 Route::get('/recruiters', [RecruiterController::class, 'showRecruiters'])->name('recruiters.index');
 

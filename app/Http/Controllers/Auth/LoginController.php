@@ -42,25 +42,21 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
-        if (Auth::check()) { {
-                if (Auth::user()->hasRole('admin')) {
-                    return '/dashboard/admin/user';
-                } elseif (Auth::user()->hasRole('candidate')) {
-                    return '/candidat/candidat_profile';
-                } elseif (Auth::user()->hasRole('representer')) {
-                    return '/user/' . Auth::id() . '/profile';
-                }
-                elseif (Auth::user()->hasRole('recruter')) {
-                    return '/user/' . Auth::id() . '/recruter';
-                }
-
-
+        if (Auth::check()) {
+            if (Auth::user()->hasRole('admin')) {
+                return '/dashboard/admin/user';
+            } elseif (Auth::user()->hasRole('candidate')) {
+                return '/candidat/candidat_profile';
+            } elseif (Auth::user()->hasRole('representer')) {
+                return '/user/' . Auth::id() . '/profile';
+            } elseif (Auth::user()->hasRole('recruiter')) {
+                return '/recruiter/profile'; 
             }
-            return '/user';
         }
-
-
+        
+        return '/user'; // Default redirect for authenticated users
     }
+    
 
 }
 
