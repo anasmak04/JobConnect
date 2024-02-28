@@ -12,16 +12,20 @@ class ProfileRepresenter extends Controller
 
 
     public function show($userId)
-    {
-        $profile = User::where('id', $userId)
-            ->whereHas('roles', function ($query) {
-                $query->where('name', 'Representer');
-            })->with('company')->first();
+{
+    $profile = User::where('id', $userId)
+        ->whereHas('roles', function ($query) {
+            $query->where('name', 'Representer');
+        })->with('company')->first();
 
+        
+    $recruiters = User::whereHas('roles', function ($query) {
+        $query->where('name', 'recruiter');
+    })->get();
 
-        return view("representer.representer_profile", compact("profile"));
-    }
-
+    
+    return view("representer.representer_profile", compact("profile", "recruiters"));
+}
 
 
 }
