@@ -81,59 +81,90 @@
             <div class="col-lg-8">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Create Recruiter User</h5>
-                        <form action="{{ route('recruiter.store') }}" method="POST">
+                        <h5 class="card-title">Create Job Offers</h5>
+                        <form action="{{ route('job_offers.store') }}" method="POST">
                             @csrf <!-- CSRF token -->
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" name="title" required>
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="position" class="form-label">Position</label>
-                                <input type="text" class="form-control" id="position" name="position" required>
+                                <label for="secteur_id" class="form-label">Sector</label>
+                                <!-- Assuming you have a list of sectors, you can generate options dynamically -->
+                                <select name="secteur_id" class="form-select" aria-label="Sector" required>
+                                    <option value="">Select a Sector</option>
+                                    @foreach($secteurs as $secteur)
+                                    <option value="{{ $secteur->id }}">{{ $secteur->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            {{-- <div class="mb-3">
+                                <label for="location" class="form-label">Location</label>
+                                <input type="text" class="form-control" id="location" name="location" required>
+                            </div> --}}
+                            <div class="mb-3">
+                                <label for="type" class="form-label">Type</label>
+                                <input type="text" class="form-control" id="type" name="type" required>
                             </div>
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <label for="salary" class="form-label">Salary</label>
+                                <input type="text" class="form-control" id="salary" name="salary" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Create Recruiter</button>
+                            <div class="mb-3">
+                                <label for="start_date" class="form-label">Start Date</label>
+                                <input type="date" class="form-control" id="start_date" name="start_date" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="end_date" class="form-label">End Date</label>
+                                <input type="date" class="form-control" id="end_date" name="end_date" required>
+                            </div>
+                            <input type="hidden" name="recruiter_id" value="{{ auth()->id() }}">
+                            <button type="submit" class="btn btn-primary">Create Job Offer</button>
                         </form>
+                        
                     </div>
                 </div>
 
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Recruiters Created</h5>
-                        <p class="mb-4"><span class="text-primary font-italic me-1">Recruiters</span> created recruiters</p>
+                        <h5 class="card-title">Created Job Offers</h5>
+                        <p class="mb-4"><span class="text-primary font-italic me-1">Offers</span> Job Offers</p>
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Position</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Type</th>
+                                        <th>Salary</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
                                         <!-- Add more table headers as needed -->
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- Loop through recruiters --}}
-                                    {{-- @foreach ($recruiters as $recruiter)
+                                    {{-- Loop through job offers --}}
+                                    @foreach ($createdJobOffers as $jobOffer)
                                         <tr>
-                                            <td>{{ $recruiter->name }}</td>
-                                            <td>{{ $recruiter->email }}</td>
-                                            <td>{{ $recruiter->position }}</td>
+                                            <td>{{ $jobOffer->title }}</td>
+                                            <td>{{ $jobOffer->description }}</td>
+                                            <td>{{ $jobOffer->type }}</td>
+                                            <td>{{ $jobOffer->salary }}</td>
+                                            <td>{{ $jobOffer->start_date }}</td>
+                                            <td>{{ $jobOffer->end_date }}</td>
                                             <!-- Add more table data as needed -->
                                         </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>

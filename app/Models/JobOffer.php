@@ -15,11 +15,12 @@ class JobOffer extends Model
         'description',
         'company_id',
         'secteur_id',
-        'location',
+        // 'location',
         'type',
         'salary',
         'start_date',
         'end_date',
+        'author_id'
     ];
 
     public function company()

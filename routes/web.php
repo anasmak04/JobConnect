@@ -46,6 +46,7 @@ Route::post('/recruiter/store', [RecruiterController::class, 'store'])->name('re
 Route::get('/recruiters', [RecruiterController::class, 'showRecruiters'])->name('recruiters.index');
 
 
+Route::post('/job_offers', [JobOfferController::class, 'recruiterOffer'])->name('job_offers.store');
 Route::get('/job-offers', [JobOfferController::class, 'index'])->name('job_offers.index');
 Route::get('/job-offers/{job_offer}', [JobOfferController::class, 'show'])->name('job_offers.show');
 Route::post('/apply', [JobOfferController::class, 'store'])->name('apply');

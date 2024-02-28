@@ -26,6 +26,44 @@ class JobOfferController extends Controller
     return view('jobOffers.index', compact('jobOffers', 'searchTerm', 'user', 'userJobOffers', 'secteurs'));
 }
 
+public function recruiterOffer(Request $request)
+{
+    // Validate the form data
+    $validatedData = $request->validate([
+        'title' => 'required|string',
+        'description' => 'required|string',
+        'secteur_id' => 'required|exists:secteurs,id',
+        // 'location' => 'required|string',
+        'type' => 'required|string',
+        'salary' => 'required|numeric',
+        'start_date' => 'required|date',
+        'end_date' => 'required|date|after:start_date',
+    ]);
+
+    $recruiterId = auth()->id(); // Get the recruiter ID
+    $companyId = auth()->user()->company_id; // Get the company ID
+
+    // Create the job offer with the validated data and recruiter ID
+    $jobOffer = JobOffer::create([
+        'title' => $validatedData['title'],
+        'description' => $validatedData['description'],
+        'secteur_id' => $validatedData['secteur_id'],
+        'type' => $validatedData['type'],
+        'salary' => $validatedData['salary'],
+        'start_date' => $validatedData['start_date'],
+        'end_date' => $validatedData['end_date'],
+        'author_id' => $recruiterId, // Assign the recruiter ID
+        'company_id' => $companyId, // Assign the company ID
+    ]);
+
+    // Redirect back after successful creation
+    return back()->with('success', 'Job offer created successfully!');
+}
+
+
+
+
+
 
     public function show(JobOffer $job_offer)
     {

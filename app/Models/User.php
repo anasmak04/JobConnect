@@ -25,6 +25,11 @@ class User extends Authenticatable implements HasMedia
      */
 
 
+     public function createdJobOffers()
+{
+    return $this->hasMany(JobOffer::class, 'author_id');
+}
+
 
     public function roles()
     {
