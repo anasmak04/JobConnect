@@ -20,31 +20,37 @@ class RecruiterController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    //  public function showProfile()
-    //  {
-    //      // Get the authenticated recruiter
-    //      $recruiter = Auth::user();
- 
-    //      // Load any additional data if necessary
- 
-    //      // For now, assuming $recruiters is a collection of recruiters, you can fetch them as per your application logic
-    //      $recruiters = User::whereHas('roles', function ($query) {
-    //          $query->where('name', 'recruiter');
-    //      })->get();
- 
-    //      // Return the recruiter profile view along with $recruiters data
-    //      return view('recruiter.profile', compact('recruiter', 'recruiters'));
-    //  }
-
+     
      public function index(): Response
-     {
-         $recruiter = Auth::user();
-         $secteurs = Secteur::all();
-         $createdJobOffers = $recruiter->createdJobOffers;
- 
-         return response()->view('recruiter.index', compact('recruiter', 'secteurs', 'createdJobOffers'));
-     }
+{
+    $recruiter = Auth::user();
+    $secteurs = Secteur::all();
+    
+    // Fetch the created job offers by the recruiter
+    $createdJobOffers = $recruiter->createdJobOffers()->get();
 
+    // Fetch the pending applications for the created job offers
+    $pendingApplications = User::whereHas('jobOffers', function ($query) use ($createdJobOffers) {
+        $query->whereIn('job_offer_id', $createdJobOffers->pluck('id'))
+            ->where('offer_status', 'Pending'); // Correct usage of wherePivot
+    })->get();
+
+    return response()->view('recruiter.index', compact('recruiter', 'secteurs', 'createdJobOffers', 'pendingApplications'));
+}
+
+public function accept(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->jobOffers()->updateExistingPivot($request->job_offer_id, ['offer_status' => 'Accepted']);
+        return redirect()->back()->with('success', 'Application accepted successfully.');
+    }
+
+    public function reject(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->jobOffers()->updateExistingPivot($request->job_offer_id, ['offer_status' => 'Rejected']);
+        return redirect()->back()->with('success', 'Application rejected successfully.');
+    }
 
     public function store(Request $request): RedirectResponse
 {

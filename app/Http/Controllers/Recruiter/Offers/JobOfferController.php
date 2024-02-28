@@ -40,10 +40,9 @@ public function recruiterOffer(Request $request)
         'end_date' => 'required|date|after:start_date',
     ]);
 
-    $recruiterId = auth()->id(); // Get the recruiter ID
-    $companyId = auth()->user()->company_id; // Get the company ID
+    $recruiterId = auth()->id(); 
+    $companyId = auth()->user()->company_id; 
 
-    // Create the job offer with the validated data and recruiter ID
     $jobOffer = JobOffer::create([
         'title' => $validatedData['title'],
         'description' => $validatedData['description'],
@@ -52,11 +51,10 @@ public function recruiterOffer(Request $request)
         'salary' => $validatedData['salary'],
         'start_date' => $validatedData['start_date'],
         'end_date' => $validatedData['end_date'],
-        'author_id' => $recruiterId, // Assign the recruiter ID
-        'company_id' => $companyId, // Assign the company ID
+        'author_id' => $recruiterId, 
+        'company_id' => $companyId, 
     ]);
 
-    // Redirect back after successful creation
     return back()->with('success', 'Job offer created successfully!');
 }
 

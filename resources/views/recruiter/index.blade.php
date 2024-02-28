@@ -164,6 +164,47 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Pending Applications</h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Action</th> <!-- New column for action buttons -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($pendingApplications as $candidate)
+                                        <tr>
+                                            <td>{{ $candidate->name }}</td>
+                                            <td>{{ $candidate->email }}</td>
+                                            <td>
+                                                <form action="{{ route('accept_application', ['id' => $candidate->id]) }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="job_offer_id" value="{{ $job_offer->id }}">
+                                                    <button type="submit" class="btn btn-success">Accept</button>
+                                                </form>
+                                                
+                                                <form action="{{ route('reject_application', ['id' => $candidate->id]) }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="job_offer_id" value="{{ $job_offer->id }}">
+                                                    <button type="submit" class="btn btn-danger">Reject</button>
+                                                </form>
+                                                
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                
                 
             </div>
         </div>

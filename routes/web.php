@@ -44,6 +44,8 @@ Route::get('/representer/profile', [RepresenterController::class, 'showProfile']
 Route::get('/recruiter/profile', [RecruiterController::class, 'index'])->name('recruiter.index');
 Route::post('/recruiter/store', [RecruiterController::class, 'store'])->name('recruiter.store');
 Route::get('/recruiters', [RecruiterController::class, 'showRecruiters'])->name('recruiters.index');
+Route::post('/accept-application/{id}', [RecruiterController::class, 'accept'])->name('accept_application');
+Route::post('/reject-application/{id}', [RecruiterController::class, 'reject'])->name('reject_application');
 
 
 Route::post('/job_offers', [JobOfferController::class, 'recruiterOffer'])->name('job_offers.store');
