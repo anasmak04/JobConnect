@@ -28,6 +28,7 @@ class JobOfferController extends Controller
         return view('jobOffers.index', compact('jobOffers', "searchTerm", "user", "userJobOffers"));
 
     }
+
     public function show(JobOffer $job_offer)
     {
         $user = auth()->user();
