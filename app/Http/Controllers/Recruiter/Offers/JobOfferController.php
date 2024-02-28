@@ -1,17 +1,15 @@
 <?php
 
 
-namespace App\Http\Controllers\Offers;
+namespace App\Http\Controllers\Recruiter\Offers;
 
 use App\Http\Controllers\Controller;
 use App\Models\JobOffer;
-use App\Models\City;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class JobOfferController extends Controller
 {
-
 
     public function index(Request $request)
     {
@@ -26,8 +24,8 @@ class JobOfferController extends Controller
             $jobOffers = JobOffer::with(['company', 'secteur'])->get();
         }
         return view('jobOffers.index', compact('jobOffers', "searchTerm", "user", "userJobOffers"));
-
     }
+
 
     public function show(JobOffer $job_offer)
     {
@@ -35,8 +33,6 @@ class JobOfferController extends Controller
         $userJobOffer = $user->jobOffers()->find($job_offer->id);
         return view('jobOffers.show', compact('job_offer', 'userJobOffer'));
     }
-
-
 
 
     /**
@@ -54,7 +50,6 @@ class JobOfferController extends Controller
      */
     public function update(Request $request, JobOffer $jobOffer)
     {
-        //
         $jobOffer->update($request->all());
         return redirect()->route("");
     }
@@ -62,6 +57,7 @@ class JobOfferController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy(JobOffer $jobOffer)
     {
         $jobOffer->delete();

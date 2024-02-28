@@ -38,6 +38,14 @@ class RepresenterController extends Controller
         }
 
 
+        public function showProfile(User $user)
+    {
+        $userDetails = $user;
+
+        $company = $user->company;
+
+        return view('representer.profile', compact('userDetails', 'company'));
+    }
 
 
 

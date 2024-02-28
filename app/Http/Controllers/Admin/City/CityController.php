@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\City;
+namespace App\Http\Controllers\Admin\City;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;

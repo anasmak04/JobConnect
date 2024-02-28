@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Formation;
+namespace App\Http\Controllers\Admin\Formation;
 
 use App\Http\Controllers\Controller;
 use App\Models\Formation;
